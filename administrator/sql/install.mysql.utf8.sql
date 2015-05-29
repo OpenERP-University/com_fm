@@ -157,9 +157,6 @@ Insert config
 INSERT INTO `#__fm_config` (`id`, `asset_id`, `ordering`, `state`, `checked_out`, `checked_out_time`, `created_by`, `guid`, `social_insurance_employee`, `social_insurance_support`, `medical_insurance_employee`, `medical_insurance_support`, `unemployment_insurance_employee`, `unemployment_insurance_support`, `union_employee`, `union_support`, `allowance_x`, `allowance_y`, `allowance_z`, `other_allowance`, `cost_water`, `electricity_1`, `electricity_2`, `electricity_3`, `electricity_4`, `electricity_5`, `electricity_6`, `allowance_36`, `base_pay`, `extra_income`, `time_update`) VALUES
 (1, 462, 1, 1, 0, '0000-00-00 00:00:00', 266, 'D1870316-14F1-404E-9754-297870292DBE', 8, 18, 1.5, 3, 1, 1, 1, 1, 25, 45, 20, 12, 6000, 2000, 2000, 2000, 2000, 2000, 2000, 500000, 1150000, 50, '0000-00-00 00:00:00');
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 
 
