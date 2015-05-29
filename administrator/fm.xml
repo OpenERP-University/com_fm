@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="3.0" method="upgrade">
+    <name>com_fm</name>
+    <creationDate>2015-04-14</creationDate>
+    <copyright>Bản quyền (C) 2015. Các quyền đều được bảo vệ.</copyright>
+    <license>bản quyền mã nguồn mở GNU phiên bản 2</license>
+    <author>Nghia</author>
+    <authorEmail>dinhtrongnghia92@gmail.com</authorEmail>
+    <authorUrl>http://www.facebook.com/G55.RaFiKi</authorUrl>
+    <version>1.0.0</version>
+    <description></description>
+    
+    
+    
+    <install> <!-- Runs on install -->
+        <sql>
+            <file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+        </sql>
+    </install>
+    <uninstall> <!-- Runs on uninstall -->
+        <sql>
+            <file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
+        </sql>
+    </uninstall>
+
+    <files folder="site">
+        <filename>index.html</filename>
+        <filename>fm.php</filename>
+        <filename>controller.php</filename>
+        <filename>router.php</filename>
+        <folder>views</folder>
+        <folder>models</folder>
+        <folder>controllers</folder>
+        <folder>helpers</folder>
+        <folder>assets</folder>
+    </files>
+    <languages folder="languages/site">
+        
+			<language tag="en-GB">en-GB/en-GB.com_fm.ini</language>
+    </languages>
+    <administration>
+        <menu img="components/com_fm/assets/images/s_com_fm.png" >COM_FM</menu>
+        <submenu>
+            
+			<menu link="option=com_fm&amp;view=configs" view="configs" img="components/com_fm/assets/images/s_configs.png" alt="Fm/Configs">COM_FM_TITLE_CONFIGS</menu>
+			
+			<menu link="option=com_fm&amp;view=revenuedeductions" view="revenuedeductions" img="components/com_fm/assets/images/s_revenuedeductions.png" alt="Fm/Revenuedeductions">COM_FM_TITLE_REVENUEDEDUCTIONS</menu>
+			
+			<menu link="option=com_fm&amp;view=e_allowances" view="e_allowances" img="components/com_fm/assets/images/s_e_allowances.png" alt="Fm/E_allowances">COM_FM_TITLE_E_ALLOWANCES</menu>
+
+			<menu link="option=com_fm&amp;view=employeepayrolls" view="employeepayrolls" img="components/com_fm/assets/images/s_employeepayrolls.png" alt="Fm/Employeepayrolls">COM_FM_TITLE_EMPLOYEEPAYROLLS</menu>
+        </submenu>
+        <files folder="administrator">
+            <filename>access.xml</filename>
+            <filename>config.xml</filename>
+            <filename>controller.php</filename>
+            <filename>index.html</filename>
+            <filename>fm.php</filename>
+            <folder>controllers</folder>
+            <folder>assets</folder>
+            <folder>helpers</folder>
+            <folder>models</folder>
+            <folder>sql</folder>
+            <folder>tables</folder>
+            <folder>views</folder>
+        </files>
+        <languages folder="languages/administrator">
+            
+			<language tag="en-GB">en-GB/en-GB.com_fm.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_fm.sys.ini</language>
+        </languages>
+    </administration>
+    <plugins>
+        <plugin group="search" plugin="fm"/>
+    </plugins>
+    
+</extension>
+<!-- Component built by the Joomla Component Creator -->
+<!-- http://www.component-creator.com/ -->

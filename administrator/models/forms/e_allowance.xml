@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+
+              <field name="id" type="text" default="0" label="COM_FM_FORM_LBL_E_ALLOWANCE_ID"
+            readonly="true" class="readonly"
+            description="JGLOBAL_FIELD_ID_DESC" /> 
+
+       <field name="created_by" type="createdby" default="" 
+            label="COM_FM_FORM_LBL_E_ALLOWANCE_CREATED_BY"
+            description="COM_FM_FORM_DESC_E_ALLOWANCE_CREATED_BY"  /> 
+
+       <field name="guid" type="text" size="40" class="inputbox"
+                                                    
+            label="COM_FM_FORM_LBL_E_ALLOWANCE_GUID"
+            description="COM_FM_FORM_DESC_E_ALLOWANCE_GUID" 
+                                                    
+                                                    
+                                                    
+                                                    filter="safehtml" /> 
+
+<field name="employee_guid" type="foreignkey" class="inputbox"
+            label="COM_FM_FORM_LBL_E_ALLOWANCE_EMPLOYEE_GUID"
+             description="COM_FM_FORM_DESC_E_ALLOWANCE_EMPLOYEE_GUID" input_type="list" table="#__hrm_employee" key_field="guid" value_field="fullname"   />  
+
+       <field name="filter_employee_guid" type="sql" class="inputbox"
+            onchange="this.form.submit();" translate="true"
+            query="SELECT 0 AS `guid`, 'COM_FM_E_ALLOWANCES_EMPLOYEE_GUID_FILTER_DEFAULT_OPTION' AS `fullname` UNION SELECT `guid`, `fullname` AS val FROM `#__hrm_employee`" key_field="guid" value_field="fullname"
+             /> 
+
+       <field name="fe_allowances" type="text" size="40" class="inputbox"
+                                                    
+            label="COM_FM_FORM_LBL_E_ALLOWANCE_FE_ALLOWANCES"
+            description="COM_FM_FORM_DESC_E_ALLOWANCE_FE_ALLOWANCES" 
+                                                     default="0" 
+                                                    
+                                                    
+                                                    filter="safehtml" /> 
+
+       <field name="option_allowance" type="list"
+                
+            label="COM_FM_FORM_LBL_E_ALLOWANCE_OPTION_ALLOWANCE"
+            description="COM_FM_FORM_DESC_E_ALLOWANCE_OPTION_ALLOWANCE" 
+                 default="1" 
+                
+                
+            option_on="Yes"
+            option_off="Yes">
+                <option value="1">X</option>
+                <option value="2">Y</option>
+                <option value="3">Z</option>
+                <option value="4">Khác</option>
+        </field> 
+
+ 
+		<field name="filter_option_allowance" type="list" onchange="this.form.submit();">
+			<option value="">COM_FM_E_ALLOWANCES_OPTION_ALLOWANCE_FILTER</option>
+			<option value="1">X</option>
+			<option value="2">Y</option>
+			<option value="3">Z</option>
+			<option value="4">Khác</option>
+		</field> 
+
+       <field name="earn_salary" type="text" size="40" class="inputbox"
+                                                    
+            label="COM_FM_FORM_LBL_E_ALLOWANCE_EARN_SALARY"
+            description="COM_FM_FORM_DESC_E_ALLOWANCE_EARN_SALARY" 
+                                                     default="0" 
+                                                    
+                                                    
+                                                    filter="safehtml" /> 
+
+       <field name="option_study" type="list"
+                
+            label="COM_FM_FORM_LBL_E_ALLOWANCE_OPTION_STUDY"
+            description="COM_FM_FORM_DESC_E_ALLOWANCE_OPTION_STUDY" 
+                 default="3" 
+                
+                
+            option_on="Yes"
+            option_off="Yes">
+                <option value="1">Đi học trong nước</option>
+                <option value="2">Đi học nước ngoài</option>
+                <option value="3">Không</option>
+        </field> 
+
+ 
+		<field name="filter_option_study" type="list" onchange="this.form.submit();">
+			<option value="">COM_FM_E_ALLOWANCES_OPTION_STUDY_FILTER</option>
+			<option value="1">Đi học trong nước</option>
+			<option value="2">Đi học nước ngoài</option>
+			<option value="3">Không</option>
+		</field> 
+
+       <field name="option_break" type="list"
+                
+            label="COM_FM_FORM_LBL_E_ALLOWANCE_OPTION_BREAK"
+            description="COM_FM_FORM_DESC_E_ALLOWANCE_OPTION_BREAK" 
+                 default="1" 
+                
+                
+            option_on="Yes"
+            option_off="Yes">
+                <option value="1">Không nghỉ</option>
+                <option value="2">Nghỉ đẻ</option>
+                <option value="3">Nghỉ không lương</option>
+        </field> 
+
+ 
+		<field name="filter_option_break" type="list" onchange="this.form.submit();">
+			<option value="">COM_FM_E_ALLOWANCES_OPTION_BREAK_FILTER</option>
+			<option value="1">Không nghỉ</option>
+			<option value="2">Nghỉ đẻ</option>
+			<option value="3">Nghỉ không lương</option>
+		</field> 
+
+       <field name="allowance_other" type="text" size="40" class="inputbox"
+                                                    
+            label="COM_FM_FORM_LBL_E_ALLOWANCE_ALLOWANCE_OTHER"
+            description="COM_FM_FORM_DESC_E_ALLOWANCE_ALLOWANCE_OTHER" 
+                                                     default="0" 
+                                                    
+                                                    
+                                                    filter="safehtml" /> 
+
+       <field name="info_allowance" type="text" size="40" class="inputbox"
+                                                    
+            label="COM_FM_FORM_LBL_E_ALLOWANCE_INFO_ALLOWANCE"
+            description="COM_FM_FORM_DESC_E_ALLOWANCE_INFO_ALLOWANCE" 
+                                                     default="0" 
+                                                    
+                                                    
+                                                    filter="safehtml" /> 
+
+       <field name="info_payroll" type="text" size="40" class="inputbox"
+                                                    
+            label="COM_FM_FORM_LBL_E_ALLOWANCE_INFO_PAYROLL"
+            description="COM_FM_FORM_DESC_E_ALLOWANCE_INFO_PAYROLL" 
+                                                    
+                                                    
+                                                    
+                                                    filter="safehtml" /> 
+
+         <field
+        name="state"
+        type="list"
+        label="JSTATUS"
+        description="JFIELD_PUBLISHED_DESC"
+        class="inputbox"
+        size="1"
+        default="1">
+        <option value="1">JPUBLISHED</option>
+        <option value="0">JUNPUBLISHED</option>
+        <option value="2">JARCHIVED</option>
+        <option value="-2">JTRASHED</option>
+    </field> 
+
+                        <field name="checked_out" type="hidden" filter="unset" />
+        <field name="checked_out_time" type="hidden" filter="unset" /> 
+
+ </fieldset> 
+
+ <fieldset 
+                        name="accesscontrol">
+                       <field name="asset_id" type="hidden" filter="unset" />
+                       <field name="rules"
+                            type="rules"
+                            label="JFIELD_RULES_LABEL"
+                            translate_label="false"
+                            filter="rules"
+                            validate="rules"
+                            class="inputbox"
+                            component="com_fm"
+                            section="e_allowance"
+                        />
+
+	</fieldset>
+
+</form>
