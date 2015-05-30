@@ -1,6 +1,6 @@
 
 DROP TABLE IF EXISTS `#__fm_history_salary`;
-
+DROP TABLE IF EXISTS `#__fm_date_config`;
 DROP TABLE IF EXISTS `#__fm_employee_payroll`;
 
 
