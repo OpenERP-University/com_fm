@@ -37,27 +37,39 @@ class FmController extends JControllerLegacy {
         $this->saveSalary();
         $this->Payroll();
     }
-/** function payroll -  tính lương
- * Tính lương theo tháng
- */
+
+    /** function payroll -  tính lương
+     * Tính lương theo tháng
+     */
     public function Payroll() {
         $date_payroll = JComponentHelper::getParams('com_fm')->get('date_payroll');
+        $model_date_config = $this->getModel('date_config');
+        //    $config = $model_date_config->getDateConfig()[0];
         if ($date_payroll) {
-
-            $now = getdate();
-            $date_now = $now["mday"];
-            $month = $now["mon"];
-            $payroll_model = $this->getModel("employeepayroll");
-            $item = $payroll_model->Connect();
-            if ($date_payroll == 25) {
-                $payroll = $payroll_model->Math($item['CB'], $item['heso']);
-                $info_payroll = $payroll_model->mathSalary($item['CB']);
-            }
+            $this->updatePayroll($date_payroll);
+        } else {
+            $this->updatePayroll();
         }
     }
-/**Chuyển dữ liệu lương về json - hiện lương theo ngày tháng chọn
- * 
- */
+
+    public function updatePayroll($date_payroll = 25) {
+        $model_date_config = $this->getModel('date_config');
+        if ($model_date_config->checkConfig($date_payroll)) {
+            if ($model_date_config->checkDate()) {
+                $payroll_model = $this->getModel("employeepayrolls");
+                if ($payroll_model->updateSalary()) {
+                    $model_date_config->updateCheckoutTime();
+                }
+            }
+        } else if (!$model_date_config->date_config_update($date_payroll)) {
+            $this->setError(JText::_('COM_FM_ERROR_NOTIFYCAL'));
+        }
+    }
+
+    /*     * Chuyển dữ liệu lương về json - hiện lương theo ngày tháng chọn
+     * 
+     */
+
     public function view_salary() {
         JFactory::getDocument()->setMimeEncoding('application/json');
 
@@ -67,48 +79,53 @@ class FmController extends JControllerLegacy {
 
         JFactory::getApplication()->close();
     }
-/*Lấy 1 mảng dữ liệu các thuộc tính liên quan đến lương của cán bộ
- * trả về json để lưu vào csdl
- */
+
+    /* Lấy 1 mảng dữ liệu các thuộc tính liên quan đến lương của cán bộ
+     * trả về json để lưu vào csdl
+     */
+
     public function dataPayroll() {
-        $payroll_model = $this->getModel("employeepayroll");
+        $payroll_model = $this->getModel("employeepayrolls");
         $item = $payroll_model->Connect();
         $result = $payroll_model->Math($item['CB'], $item['heso']);
 
         return json_encode($result);
     }
-/**
- * Lưu mảng dl liên quan tới lương , theo ngày tháng dc chọn trong option
- */
-    public function saveSalary() {
-        $date_salary = JComponentHelper::getParams('com_fm')->get('date_salary');
-        $date_payroll = JComponentHelper::getParams('com_fm')->get('date_payroll');
-        if ($date_salary) {
 
-            $now = getdate();
-            $date_now = $now["mday"];
-            $month = $now["mon"];
-            $year = $now["year"];
-            $infosalary_model = $this->getModel('salaryhistory');
-            $infosalary = $infosalary_model->getSalary($month, $year);
-            // $payroll_model = $this->getModel("employeepayroll");
-            $salary = $this->dataPayroll();
-            if ($infosalary == NULL) {
-                if ($date_salary == 26 && $date_salary > $date_payroll) {
-                    $infosalary_model->insertInfoPayroll($month, $year, $salary);
-                }
-                if ($date_salary == 26 && $date_salary < $date_payroll) {
-                    $month = $month - 1;
-                    $infosalary_model->insertInfoPayroll($month, $year, $salary);
+    /**
+     * Lưu mảng dl liên quan tới lương , theo ngày tháng dc chọn trong option
+     */
+    public function saveSalary() {
+
+        $date_salary = JComponentHelper::getParams('com_fm')->get('date_salary');
+        $model_date_config = $this->getModel('date_config');
+        if ($date_salary) {
+            $this->insertSalary($date_salary);
+        } else
+            $this->insertSalary();
+    }
+
+    public function insertSalary($date_salary = 26) {
+        $model_date_config = $this->getModel('date_config');
+        if ($model_date_config->checkConfig($date_salary, 'date_salary')) {
+
+            if ($model_date_config->checkDate('checkout_time_salary')) {
+                $infosalary_model = $this->getModel('salaryhistory');
+                $salary = $this->dataPayroll();
+                if ($infosalary_model->insertInfoPayroll($salary)) {
+                    $model_date_config->updateCheckoutTime('checkout_time_salary');
                 }
             }
+        } else if (!$model_date_config->date_config_update($date_salary)) {
+            $this->setError(JText::_('COM_FM_ERROR_NOTIFYCAL'));
         }
     }
-/**
- * Lấy dữ liệu về lương dc lưu thành json ra theo ngày tháng dc chọn
- * Chuyên thành mảng
- * @return type
- */
+
+    /**
+     * Lấy dữ liệu về lương dc lưu thành json ra theo ngày tháng dc chọn
+     * Chuyên thành mảng
+     * @return type
+     */
     public function dataEmployeeSalary() {
         $input = JFactory::getApplication()->input;
 
@@ -202,9 +219,10 @@ class FmController extends JControllerLegacy {
         );
         return $data;
     }
-/**
- * Export excel chi tiết
- */
+
+    /**
+     * Export excel chi tiết
+     */
     public function exportExcel() {
         require_once JPATH_COMPONENT . '/helpers/excel.php';
         $input = JFactory::getApplication()->input;
@@ -212,7 +230,7 @@ class FmController extends JControllerLegacy {
         $param['month'] = $input->get("month");
         $param['year'] = $input->get("year");
         $data = $this->dataEmployeeSalary();
-        
+
         FmHelperExcel::ExportExcel($param, $data);
     }
 
