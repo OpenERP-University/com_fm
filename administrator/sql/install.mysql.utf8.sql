@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `#__fm_e_allowance` (
 `employee_guid` VARCHAR(255)  NOT NULL ,
 `fe_allowances` DOUBLE NOT NULL DEFAULT '0' ,
 `option_allowance` VARCHAR(255)  NOT NULL DEFAULT '1',
-`earn_salary` DOUBLE NOT NULL NOT NULL DEFAULT '1',
+`earn_salary` DOUBLE NOT NULL NOT NULL DEFAULT '100',
 `option_study` VARCHAR(255)  NOT NULL DEFAULT '3' ,
 `option_break` VARCHAR(255)  NOT NULL DEFAULT '1' ,
 `allowance_other` DOUBLE NOT NULL DEFAULT '0' ,
@@ -121,6 +121,14 @@ PRIMARY KEY (`id`)
 ) DEFAULT COLLATE=utf8_general_ci;
 
 
+CREATE TABLE IF NOT EXISTS `#__fm_date_config` (
+`id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+`date_payroll` INT(11)  NOT NULL ,
+`checkout_time_payroll` DATE NULL DEFAULT '0000-00-00',
+`date_salary` INT(11)  NOT NULL ,
+`checkout_time_salary` DATE NOT NULL DEFAULT '0000-00-00',
+PRIMARY KEY (`id`)
+) DEFAULT COLLATE=utf8_general_ci;
 
 /** Create History **/
 
@@ -157,6 +165,12 @@ Insert config
 INSERT INTO `#__fm_config` (`id`, `asset_id`, `ordering`, `state`, `checked_out`, `checked_out_time`, `created_by`, `guid`, `social_insurance_employee`, `social_insurance_support`, `medical_insurance_employee`, `medical_insurance_support`, `unemployment_insurance_employee`, `unemployment_insurance_support`, `union_employee`, `union_support`, `allowance_x`, `allowance_y`, `allowance_z`, `other_allowance`, `cost_water`, `electricity_1`, `electricity_2`, `electricity_3`, `electricity_4`, `electricity_5`, `electricity_6`, `allowance_36`, `base_pay`, `extra_income`, `time_update`) VALUES
 (1, 462, 1, 1, 0, '0000-00-00 00:00:00', 266, 'D1870316-14F1-404E-9754-297870292DBE', 8, 18, 1.5, 3, 1, 1, 1, 1, 25, 45, 20, 12, 6000, 2000, 2000, 2000, 2000, 2000, 2000, 500000, 1150000, 50, '0000-00-00 00:00:00');
 
+
+/**
+Insert date_config
+**/
+INSERT INTO `y4x1k_fm_date_config` (`id`, `date_payroll`, `checkout_time_payroll`, `date_salary`, `checkout_time_salary`) VALUES
+(1, 25, DATE_FORMAT(NOW(),'%Y-%m-25'), 26, DATE_FORMAT(NOW(),'%Y-%m-26'));
 
 
 
