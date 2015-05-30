@@ -21,8 +21,22 @@ $document->addStyleSheet('components/com_fm/assets/css/fm.css');
 <script type="text/javascript">
     js = jQuery.noConflict();
     js(document).ready(function () {
-
-
+        js('#exportexcelselect').click(function () {
+            var val = [];
+            js(':checkbox:checked').each(function (i) {
+                val[i] = js(this).val()+"_";
+            });
+            var id = "id=" + val.toString();
+            var year = js('#year').val();
+            var month = js('#month').val();
+            var data = "&month=" + month + "&year=" + year;
+            router = 'index.php?option=com_fm&task=exportExcelEmployee&' + id + data;
+            window.open(router);
+            
+        });
+        js('#checkall').click(function(){
+            $(":checkbox").prop( "checked", true );
+        });
 
         function getListPayroll(data) {
             var year = js('#year').val();
@@ -37,41 +51,50 @@ $document->addStyleSheet('components/com_fm/assets/css/fm.css');
                     console.log(results);
                     var parsed = js.parseJSON(results);
                     if (results) {
-                            
+
                         if (parsed.salary)
                         {
-                            
+
                             var trHTML = '';
                             var i = 0;
 
                             if (month && !year)
                             {
-                                trHTML += '<table id ="viewtable" class ="table table-hover">' + '<tr><th><?php echo JText::_('COM_FM_SALARY_INFO');echo JText::_('COM_FM_SALARY_INFO_MONTH'); ?> ' + month + '</th><th> </th><th></th></tr>' + '<tr> <th><?php echo JText::_('COM_FM_REVENUEDEDUCTIONS_EMPLOYEE_GUID'); ?></th>  <th><?php echo JText::_('COM_FM_EMPLOYEEPAYROLLS_DEPARTMENT_GUID'); ?></th><th><?php echo JText::_('COM_FM_EMPLOYEEPAYROLLS_PAYROLL'); ?></th><th><?php echo JText::_('COM_FM_SALARY_INFO_YEAR'); ?></th></tr>'
+                                trHTML += '<table id ="viewtable" class ="table table-hover">' + '<tr><th><?php
+echo JText::_('COM_FM_SALARY_INFO');
+echo JText::_('COM_FM_SALARY_INFO_MONTH');
+?> ' + month + '</th><th> </th><th></th></tr>' + '<tr> <th><?php echo JText::_('COM_FM_SELECT_EMPLOYEE'); ?></th><th><?php echo JText::_('COM_FM_REVENUEDEDUCTIONS_EMPLOYEE_GUID'); ?></th>  <th><?php echo JText::_('COM_FM_EMPLOYEEPAYROLLS_DEPARTMENT_GUID'); ?></th><th><?php echo JText::_('COM_FM_EMPLOYEEPAYROLLS_PAYROLL'); ?></th><th><?php echo JText::_('COM_FM_SALARY_INFO_YEAR'); ?></th></tr>'
 
                             }
                             if (year && !month)
                             {
-                                trHTML += '<table id ="viewtable" class ="table table-hover">' + '<tr><th><?php echo JText::_('COM_FM_SALARY_INFO');echo JText::_('COM_FM_SALARY_INFO_YEAR'); ?> ' + year + '</th><th> </th><th></th></tr>' + '<tr> <th><?php echo JText::_('COM_FM_REVENUEDEDUCTIONS_EMPLOYEE_GUID'); ?></th>  <th><?php echo JText::_('COM_FM_EMPLOYEEPAYROLLS_DEPARTMENT_GUID'); ?></th><th><?php echo JText::_('COM_FM_EMPLOYEEPAYROLLS_PAYROLL'); ?></th><th><?php echo JText::_('COM_FM_SALARY_INFO_MONTH'); ?></th></tr>'
+                                trHTML += '<table id ="viewtable" class ="table table-hover">' + '<tr><th><?php
+echo JText::_('COM_FM_SALARY_INFO');
+echo JText::_('COM_FM_SALARY_INFO_YEAR');
+?> ' + year + '</th><th> </th><th></th></tr>' + '<tr> <th><?php echo JText::_('COM_FM_SELECT_EMPLOYEE'); ?></th><th><?php echo JText::_('COM_FM_REVENUEDEDUCTIONS_EMPLOYEE_GUID'); ?></th>  <th><?php echo JText::_('COM_FM_EMPLOYEEPAYROLLS_DEPARTMENT_GUID'); ?></th><th><?php echo JText::_('COM_FM_EMPLOYEEPAYROLLS_PAYROLL'); ?></th><th><?php echo JText::_('COM_FM_SALARY_INFO_MONTH'); ?></th></tr>'
 
 
                             }
                             if (month && year) {
-                                trHTML += '<table id ="viewtable" class ="table table-hover">' + '<tr><th><?php echo JText::_('COM_FM_SALARY_INFO');echo JText::_('COM_FM_SALARY_INFO_MONTH'); ?> ' + month + ' <?php echo JText::_('COM_FM_SALARY_INFO_YEAR'); ?> ' + year + '</th><th> </th><th></th></tr>' + '<tr> <th><?php echo JText::_('COM_FM_REVENUEDEDUCTIONS_EMPLOYEE_GUID'); ?></th>  <th><?php echo JText::_('COM_FM_EMPLOYEEPAYROLLS_DEPARTMENT_GUID'); ?></th><th><?php echo JText::_('COM_FM_EMPLOYEEPAYROLLS_PAYROLL'); ?></th></tr>'
+                                trHTML += '<table id ="viewtable" class ="table table-hover">' + '<tr><th><?php
+echo JText::_('COM_FM_SALARY_INFO');
+echo JText::_('COM_FM_SALARY_INFO_MONTH');
+?> ' + month + ' <?php echo JText::_('COM_FM_SALARY_INFO_YEAR'); ?> ' + year + '</th><th> </th><th></th></tr>' + '<tr> <th><?php echo JText::_('COM_FM_SELECT_EMPLOYEE'); ?></th><th><?php echo JText::_('COM_FM_REVENUEDEDUCTIONS_EMPLOYEE_GUID'); ?></th>  <th><?php echo JText::_('COM_FM_EMPLOYEEPAYROLLS_DEPARTMENT_GUID'); ?></th><th><?php echo JText::_('COM_FM_EMPLOYEEPAYROLLS_PAYROLL'); ?></th></tr>'
                             }
                             js.each(parsed.salary, function (k, item) {
                                 if (month && !year)
                                 {
-                                    trHTML += '<tr><td>' + parsed.fullname[i] + '</td><td>' + parsed.department[i] + '</td><td>' + parsed.salary[i] + '</td><td>' + parsed.years[i] + '</td></tr>';
+                                    trHTML += '<tr><td><input type="checkbox" name="select[]" value="' + i + '"></td><td>' + parsed.fullname[i] + '</td><td>' + parsed.department[i] + '</td><td>' + parsed.salary[i] + '</td><td>' + parsed.years[i] + '</td></tr>';
                                     i++;
                                 }
                                 if (year && !month)
                                 {
-                                    trHTML += '<tr><td>' + parsed.fullname[i] + '</td><td>' + parsed.department[i] + '</td><td>' + parsed.salary[i] + '</td><td>' + parsed.month[i] + '</td></tr>';
+                                    trHTML += '<tr><td><input type="checkbox" name="select[]" value="' + i + '"></td><td>' + parsed.fullname[i] + '</td><td>' + parsed.department[i] + '</td><td>' + parsed.salary[i] + '</td><td>' + parsed.month[i] + '</td></tr>';
                                     i++;
                                 }
                                 if (month && year)
                                 {
-                                    trHTML += '<tr><td>' + parsed.fullname[i] + '</td><td>' + parsed.department[i] + '</td><td>' + parsed.salary[i] + '</td></tr>';
+                                    trHTML += '<tr><td><input type="checkbox" name="select[]" value="' + i + '"></td><td>' + parsed.fullname[i] + '</td><td>' + parsed.department[i] + '</td><td>' + parsed.salary[i] + '</td></tr>';
                                     i++;
                                 }
                             });
@@ -120,6 +143,7 @@ $document->addStyleSheet('components/com_fm/assets/css/fm.css');
 
 
     });
+
     // search info
     function searchTable(inputVal)
     {
@@ -146,6 +170,8 @@ $document->addStyleSheet('components/com_fm/assets/css/fm.css');
             }
         });
     }
+
+
 </script>
 
 <form action="<?php echo JRoute::_('index.php?option=com_fm&view=employeepayrolls&layout=listsalary'); ?>" method="post" name="adminForm" id="adminForm">
@@ -156,8 +182,8 @@ $document->addStyleSheet('components/com_fm/assets/css/fm.css');
                     <option value=""><?php echo JText::_('COM_FM_SELECT_YEAR') ?></option>
                     <?php for ($i = 2014; $i < 2080; $i++) { ?>
                         <option value="<?php echo $i; ?>"><?php echo $i; ?></option>  
-<?php }
-?>
+                    <?php }
+                    ?>
                 </select>
             </div>
             <div style="padding-left: 10px" class="btn-group pull-left">
@@ -165,8 +191,8 @@ $document->addStyleSheet('components/com_fm/assets/css/fm.css');
                     <option value=""><?php echo JText::_('COM_FM_SELECT_MONTH') ?></option>
                     <?php for ($i = 1; $i <= 12; $i++) { ?>
                         <option value="<?php echo $i; ?>"><?php echo $i; ?></option>  
-<?php }
-?>
+                    <?php }
+                    ?>
                 </select>
             </div>
             <div style="padding-left: 10px" class="btn-group pull-left">
@@ -185,6 +211,12 @@ $document->addStyleSheet('components/com_fm/assets/css/fm.css');
             <div style="padding-left: 10px" class="btn-group pull-left">
                 <div class="input-medium chzn-done">
                     <button id ="exportexcel" type="submit" class="btn btn-default" onclick="return false"><?php echo JText::_('COM_FM_SALARY_HISTORY_EXPORT_EXCEL') ?></button>
+                </div>
+            </div>
+
+            <div style="padding-left: 10px" class="btn-group pull-left">
+                <div class="input-medium chzn-done">
+                    <button id ="exportexcelselect" type="submit" class="btn btn-default" onclick="return false"><?php echo JText::_('COM_FM_EXPORT_EXCEL_EMPLOYEE') ?></button>
                 </div>
             </div>
         </div>

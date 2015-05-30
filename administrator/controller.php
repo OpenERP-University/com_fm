@@ -37,7 +37,9 @@ class FmController extends JControllerLegacy {
         $this->saveSalary();
         $this->Payroll();
     }
-
+/** function payroll -  tính lương
+ * Tính lương theo tháng
+ */
     public function Payroll() {
         $date_payroll = JComponentHelper::getParams('com_fm')->get('date_payroll');
         if ($date_payroll) {
@@ -53,69 +55,21 @@ class FmController extends JControllerLegacy {
             }
         }
     }
-
+/**Chuyển dữ liệu lương về json - hiện lương theo ngày tháng chọn
+ * 
+ */
     public function view_salary() {
         JFactory::getDocument()->setMimeEncoding('application/json');
 
-        $input = JFactory::getApplication()->input;
-
-        $month = $input->get("month");
-        $year = $input->get("year");
-        $salary_model = $this->getModel("salaryhistory");
-//cái lịch sử lương ở đây
-        $salary = $salary_model->getPayroll($month, $year);
-
-//gọi đến hàm để lấy các dữ liệu từ cái salary ra
-        //$salary = str_replace('},{', ",", $salary);
-        $j = 0;
-        foreach ($salary as $json) {
-            $salarydecode[$j] = json_decode($json['salary']);
-            $month[$j] = $json['workmonth'];
-            $year[$j] = $json['workyear'];
-
-            $j++;
-        }
-
-        $i = 0;
-        $j = 0;
-        $h = 0;
-        $k = 0;
-        
-        // $n= count($salarydecode['TienLuong_CB']);
-        foreach ($salarydecode as $value) {
-            foreach ($value->employee_guid as $data) {
-                $fullname[$i] = $salary_model->getEmployeeName($data);
-                $year_salary[$i] = $year[$k];
-                $month_salary[$i] = $month[$k];
-                $i++;
-            }
-            $k++;
-
-            foreach ($value->DonVi as $data) {
-                $department[$j] = $data;
-                $j++;
-            }
-
-            foreach ($value->TienLuong_CB as $data) {
-                $salary_employee[$h] = $data;
-                $h++;
-            }
-
-        }
-       
-        $data = array(
-            "month" => $month_salary,
-            "years" => $year_salary,
-            "salary" => $salary_employee,
-            "fullname" => $fullname,
-            "department" => $department   
-        );
+        $data = $this->dataEmployeeSalary();
 
         echo json_encode($data);
-        
+
         JFactory::getApplication()->close();
     }
-
+/*Lấy 1 mảng dữ liệu các thuộc tính liên quan đến lương của cán bộ
+ * trả về json để lưu vào csdl
+ */
     public function dataPayroll() {
         $payroll_model = $this->getModel("employeepayroll");
         $item = $payroll_model->Connect();
@@ -123,7 +77,9 @@ class FmController extends JControllerLegacy {
 
         return json_encode($result);
     }
-
+/**
+ * Lưu mảng dl liên quan tới lương , theo ngày tháng dc chọn trong option
+ */
     public function saveSalary() {
         $date_salary = JComponentHelper::getParams('com_fm')->get('date_salary');
         $date_payroll = JComponentHelper::getParams('com_fm')->get('date_payroll');
@@ -148,9 +104,12 @@ class FmController extends JControllerLegacy {
             }
         }
     }
-
-    public function exportExcel() {
-        require_once JPATH_COMPONENT . '/helpers/excel.php';
+/**
+ * Lấy dữ liệu về lương dc lưu thành json ra theo ngày tháng dc chọn
+ * Chuyên thành mảng
+ * @return type
+ */
+    public function dataEmployeeSalary() {
         $input = JFactory::getApplication()->input;
 
         $param['month'] = $input->get("month");
@@ -173,9 +132,10 @@ class FmController extends JControllerLegacy {
 
         $i = 0;
         $j = 0;
-        $h = 0;
         $k = 0;
-        $n=0;$m=0; $a=0;$b=0;$c=0;$d=0;$e=0;$f=0;$g=0;$l=0;$a1=0;$b1=0;$c1=0;$d1=0;$e1=0;$f1=0;$h1=0;$g1=0;
+        $n = 0;
+        $m = 0;
+
         // $n= count($salarydecode['TienLuong_CB']);
         foreach ($salarydecode as $value) {
             foreach ($value->employee_guid as $data) {
@@ -186,91 +146,34 @@ class FmController extends JControllerLegacy {
             }
             $k++;
 
-            foreach ($value->DonVi as $data) {
-                $department[$j] = $data;
-                $j++;
+            $n = count($value->employee_guid);
+            for ($j = 0; $j < $n; $j++) {
+                $department[$j + $m] = $value->DonVi[$j];
+                $salary_employee[$j + $m] = $value->TienLuong_CB[$j];
+                $HSPC_CV[$j + $m] = $value->HSPC_CV[$j];
+                $HSPV_VK[$j + $m] = $value->HSPV_VK[$j];
+                $HSPC_Nghe [$j + $m] = $value->HSPC_Nghe[$j];
+                $HSML[$j + $m] = $value->HSML[$j];
+                $HSPCTN[$j + $m] = $value->HSPCTN[$j];
+                $TongHeSo[$j + $m] = $value->TongHeSo[$j];
+                $TienLuong_PC[$j + $m] = $value->TienLuong_PC[$j];
+                $BHXH[$j + $m] = $value->BHXH[$j];
+                $BHYT[$j + $m] = $value->BHYT[$j];
+                $BHTN[$j + $m] = $value->BHTN[$j];
+                $TienNha[$j + $m] = $value->TienNha[$j];
+                $TienDien[$j + $m] = $value->TienDien[$j];
+                $TienNuoc[$j + $m] = $value->TienNuoc[$j];
+                $TamGiu[$j + $m] = $value->TamGiu[$j];
+                $TienGiamTru[$j + $m] = $value->TienGiamTru[$j];
+                $LuongPC[$j + $m] = $value->LuongPC[$j];
+                $TNTT[$j + $m] = $value->TNTT[$j];
+                $PC36[$j + $m] = $value->PC36[$j];
+                $employee_guid[$j + $m] = $value->employee_guid[$j];
             }
-
-            foreach ($value->TienLuong_CB as $data) {
-                $salary_employee[$h] = $data;
-                $h++;
-            }
-
-            foreach ($value->HSPC_CV as $data) {
-                $HSPC_CV[$n] = $data;
-                $n++;
-            }
-            foreach ($value->HSPV_VK as $data) {
-                $HSPV_VK[$m] = $data;
-                $m++;
-            }
-            foreach ($value->HSPC_Nghe as $data) {
-                $HSPC_Nghe[$a] = $data;
-                $a++;
-            }
-            foreach ($value->HSML as $data) {
-                $HSML[$b] = $data;
-                $b++;
-            }
-         
-            foreach ($value->HSPCTN as $data) {
-                $HSPCTN[$g1] = $data;
-                $g1++;
-            }
-            foreach ($value->TongHeSo as $data) {
-                $TongHeSo[$c] = $data;
-                $c++;
-            }
-            foreach ($value->TienLuong_PC as $data) {
-                $TienLuong_PC[$d] = $data;
-                $d++;
-            }
-            foreach ($value->BHXH as $data) {
-                $BHXH[$e] = $data;
-                $e++;
-            }
-            foreach ($value->BHYT as $data) {
-                $BHYT[$f] = $data;
-                $f++;
-            }
-            foreach ($value->BHTN as $data) {
-                $BHTN[$g] = $data;
-                $g++;
-            }
-            foreach ($value->TienNha as $data) {
-                $TienNha[$l] = $data;
-                $l++;
-            }
-            foreach ($value->TienDien as $data) {
-                $TienDien[$a1] = $data;
-                $a1++;
-            }
-            foreach ($value->TienNuoc as $data) {
-                $TienNuoc[$b1] = $data;
-                $b1++;
-            }
-            foreach ($value->TamGiu as $data) {
-                $TamGiu[$c1] = $data;
-                $c1++;
-            }
-            foreach ($value->TienGiamTru as $data) {
-                $TienGiamTru[$d1] = $data;
-                $d1++;
-            }
-            foreach ($value->LuongPC as $data) {
-                $LuongPC[$e1] = $data;
-                $e1++;
-            }
-            foreach ($value->TNTT as $data) {
-                $TNTT[$f1] = $data;
-                $f1++;
-            }
-            foreach ($value->PC36 as $data) {
-                $PC36[$h1] = $data;
-                $h1++;
-            }
+            $m = $m + $n;
         }
-       
+
+
         $data = array(
             "month" => $month_salary,
             "years" => $year_salary,
@@ -281,7 +184,89 @@ class FmController extends JControllerLegacy {
             "HSPC_VK" => $HSPV_VK,
             "HSPC_Nghe" => $HSPC_Nghe,
             "HSML" => $HSML,
-            "HSPCTN"=>$HSPCTN,
+            "HSPCTN" => $HSPCTN,
+            "TongHeSo" => $TongHeSo,
+            "TienLuong_PC" => $TienLuong_PC,
+            "BHXH" => $BHXH,
+            "BHYT" => $BHYT,
+            "BHTN" => $BHTN,
+            "TienNha" => $TienNha,
+            "TienDien" => $TienDien,
+            "TienNuoc" => $TienNuoc,
+            "TamGiu" => $TamGiu,
+            "TienGiamTru" => $TienGiamTru,
+            "LuongPC" => $LuongPC,
+            "TNTT" => $TNTT,
+            "PC36" => $PC36,
+            "employee_guid" => $employee_guid
+        );
+        return $data;
+    }
+/**
+ * Export excel chi tiết
+ */
+    public function exportExcel() {
+        require_once JPATH_COMPONENT . '/helpers/excel.php';
+        $input = JFactory::getApplication()->input;
+
+        $param['month'] = $input->get("month");
+        $param['year'] = $input->get("year");
+        $data = $this->dataEmployeeSalary();
+        
+        FmHelperExcel::ExportExcel($param, $data);
+    }
+
+    /**
+     * export excel theo từng cán bộ chọn
+     */
+    public function exportExcelEmployee() {
+        require_once JPATH_COMPONENT . '/helpers/excel.php';
+        $input = JFactory::getApplication()->input;
+
+        $param['month'] = $input->get("month");
+        $param['year'] = $input->get("year");
+        $param['id'] = $input->get("id");
+        $id = explode("_", $param['id']);
+        $n = count($id) - 1;
+        $data = $this->dataEmployeeSalary();
+
+        for ($i = 0; $i < $n; $i++) {
+            $month_salary[$i] = $data['month'][$id[$i]];
+            $year_salary[$i] = $data['years'][$id[$i]];
+            $fullname[$i] = $data['fullname'][$id[$i]];
+            $department[$i] = $data['department'][$id[$i]];
+            $salary_employee[$i] = $data['salary'][$id[$i]];
+            $HSPC_CV[$i] = $data['HSPC_CV'][$id[$i]];
+            $HSPV_VK[$i] = $data['HSPC_VK'][$id[$i]];
+            $HSPC_Nghe [$i] = $data['HSPC_Nghe'][$id[$i]];
+            $HSML[$i] = $data['HSML'][$id[$i]];
+            $HSPCTN[$i] = $data['HSPCTN'][$id[$i]];
+            $TongHeSo[$i] = $data['TongHeSo'][$id[$i]];
+            $TienLuong_PC[$i] = $data['TienLuong_PC'][$id[$i]];
+            $BHXH[$i] = $data['BHXH'][$id[$i]];
+            $BHYT[$i] = $data['BHYT'][$id[$i]];
+            $BHTN[$i] = $data['BHTN'][$id[$i]];
+            $TienNha[$i] = $data['TienNha'][$id[$i]];
+            $TienDien[$i] = $data['TienDien'][$id[$i]];
+            $TienNuoc[$i] = $data['TienNuoc'][$id[$i]];
+            $TamGiu[$i] = $data['TamGiu'][$id[$i]];
+            $TienGiamTru[$i] = $data['TienGiamTru'][$id[$i]];
+            $LuongPC[$i] = $data['LuongPC'][$id[$i]];
+            $TNTT[$i] = $data['TNTT'][$id[$i]];
+            $PC36[$i] = $data['PC36'][$id[$i]];
+        }
+
+        $data = array(
+            "month" => $month_salary,
+            "years" => $year_salary,
+            "salary" => $salary_employee,
+            "fullname" => $fullname,
+            "department" => $department,
+            "HSPC_CV" => $HSPC_CV,
+            "HSPC_VK" => $HSPV_VK,
+            "HSPC_Nghe" => $HSPC_Nghe,
+            "HSML" => $HSML,
+            "HSPCTN" => $HSPCTN,
             "TongHeSo" => $TongHeSo,
             "TienLuong_PC" => $TienLuong_PC,
             "BHXH" => $BHXH,
@@ -296,8 +281,7 @@ class FmController extends JControllerLegacy {
             "TNTT" => $TNTT,
             "PC36" => $PC36
         );
-        
-        FmHelperExcel::ExportExcel($param, $data);
+        FmHelperExcel::tableExcel($param, $data);
     }
 
 }
