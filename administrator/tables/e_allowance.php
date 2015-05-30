@@ -47,7 +47,7 @@ class FmTablee_allowance extends JTable
             $query = $db->getQuery(true);
             $query
                     ->select('count(' . $db->quoteName('guid') . ')')
-                    ->from('`#__hrm_employee`')
+                    ->from($this->_tbl)
                     ->where($db->quoteName('guid') . ' = ' . $db->quote($db->escape($GUID)));
             $db->setQuery($query);
             $results = $db->loadResult();

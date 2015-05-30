@@ -50,7 +50,7 @@ class FmTableemployeepayroll extends JTable
               $query
 
                       ->select('count('.$db->quoteName('guid').')')
-                      ->from('`#__hrm_employee`')
+                      ->from($this->_tbl)
                       ->where($db->quoteName('guid') . ' = ' . $db->quote($db->escape($GUID)));
               $db->setQuery($query);
               $results = $db->loadResult();

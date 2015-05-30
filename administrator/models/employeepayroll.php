@@ -490,7 +490,6 @@ class FmModelEmployeepayroll extends JModelAdmin {
                 (float) $thamnien = $years / 100;
             } else {
                 $thamnien = 0;
-                //var_dump($thamnien);die();
             }
             return $thamnien;
         } else {
