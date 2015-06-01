@@ -230,8 +230,11 @@ class FmController extends JControllerLegacy {
         $param['month'] = $input->get("month");
         $param['year'] = $input->get("year");
         $data = $this->dataEmployeeSalary();
-
-        FmHelperExcel::ExportExcel($param, $data);
+        if ($data && $param) {
+            FmHelperExcel::ExportExcel($param, $data);
+        } else {
+            return FALSE;
+        }
     }
 
     /**
@@ -299,7 +302,11 @@ class FmController extends JControllerLegacy {
             "TNTT" => $TNTT,
             "PC36" => $PC36
         );
-        FmHelperExcel::tableExcel($param, $data);
+        if ($data && $param) {
+            FmHelperExcel::tableExcel($param, $data);
+        } else {
+            return FALSE;
+        }
     }
 
 }
