@@ -169,7 +169,7 @@ INSERT INTO `#__fm_config` (`id`, `asset_id`, `ordering`, `state`, `checked_out`
 /**
 Insert date_config
 **/
-INSERT INTO `y4x1k_fm_date_config` (`id`, `date_payroll`, `checkout_time_payroll`, `date_salary`, `checkout_time_salary`) VALUES
+INSERT INTO `#__fm_date_config` (`id`, `date_payroll`, `checkout_time_payroll`, `date_salary`, `checkout_time_salary`) VALUES
 (1, 25, DATE_FORMAT(NOW(),'%Y-%m-25'), 26, DATE_FORMAT(NOW(),'%Y-%m-26'));
 
 
