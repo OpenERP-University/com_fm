@@ -116,7 +116,7 @@ class FmController extends JControllerLegacy {
                     $model_date_config->updateCheckoutTime('checkout_time_salary');
                 }
             }
-        } else if (!$model_date_config->date_config_update($date_salary)) {
+        } else if (!$model_date_config->date_config_update($date_salary,'date_salary','checkout_time_salary')) {
             $this->setError(JText::_('COM_FM_ERROR_NOTIFYCAL'));
         }
     }
