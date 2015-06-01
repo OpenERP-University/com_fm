@@ -65,9 +65,9 @@ class FmViewConfig extends JViewLegacy {
             JToolBarHelper::custom('config.save2new', 'save-new.png', 'save-new_f2.png', 'JTOOLBAR_SAVE_AND_NEW', false);
         }
         // If an existing item, can save to a copy.
-        if (!$isNew && $canDo->get('core.create')) {
-            JToolBarHelper::custom('config.save2copy', 'save-copy.png', 'save-copy_f2.png', 'JTOOLBAR_SAVE_AS_COPY', false);
-        }
+//        if (!$isNew && $canDo->get('core.create')) {
+//            JToolBarHelper::custom('config.save2copy', 'save-copy.png', 'save-copy_f2.png', 'JTOOLBAR_SAVE_AS_COPY', false);
+//        }
         if (empty($this->item->id)) {
             JToolBarHelper::cancel('config.cancel', 'JTOOLBAR_CANCEL');
         } else {

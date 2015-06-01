@@ -66,9 +66,9 @@ class FmViewE_allowance extends JViewLegacy {
             JToolBarHelper::custom('e_allowance.save2new', 'save-new.png', 'save-new_f2.png', 'JTOOLBAR_SAVE_AND_NEW', false);
         }
         // If an existing item, can save to a copy.
-        if (!$isNew && $canDo->get('core.create')) {
-            JToolBarHelper::custom('e_allowance.save2copy', 'save-copy.png', 'save-copy_f2.png', 'JTOOLBAR_SAVE_AS_COPY', false);
-        }
+//        if (!$isNew && $canDo->get('core.create')) {
+//            JToolBarHelper::custom('e_allowance.save2copy', 'save-copy.png', 'save-copy_f2.png', 'JTOOLBAR_SAVE_AS_COPY', false);
+//        }
         if (empty($this->item->id)) {
             JToolBarHelper::cancel('e_allowance.cancel', 'JTOOLBAR_CANCEL');
         } else {
