@@ -107,11 +107,13 @@ class FmController extends JControllerLegacy {
 
     public function insertSalary($date_salary = 26) {
         $model_date_config = $this->getModel('date_config');
+       
         if ($model_date_config->checkConfig($date_salary, 'date_salary')) {
-
+           
             if ($model_date_config->checkDate('checkout_time_salary')) {
                 $infosalary_model = $this->getModel('salaryhistory');
                 $salary = $this->dataPayroll();
+                
                 if ($infosalary_model->insertInfoPayroll($salary)) {
                     $model_date_config->updateCheckoutTime('checkout_time_salary');
                 }
