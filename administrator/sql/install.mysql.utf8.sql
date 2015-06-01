@@ -114,8 +114,8 @@ CREATE TABLE IF NOT EXISTS `#__fm_history_salary` (
 `checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
 `created_by` INT(11)  NOT NULL ,
 `guid` VARCHAR(255)  NOT NULL ,
-`workmonth` VARCHAR(255)  NOT NULL ,
-`workyear` VARCHAR(255)  NOT NULL ,
+`workmonth` INT(3)  NOT NULL ,
+`workyear` INT(6)  NOT NULL ,
 `salary` TEXT NOT NULL ,
 PRIMARY KEY (`id`)
 ) DEFAULT COLLATE=utf8_general_ci;
@@ -123,9 +123,9 @@ PRIMARY KEY (`id`)
 
 CREATE TABLE IF NOT EXISTS `#__fm_date_config` (
 `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-`date_payroll` INT(11)  NOT NULL ,
+`date_payroll` INT(3)  NOT NULL ,
 `checkout_time_payroll` DATE NULL DEFAULT '0000-00-00',
-`date_salary` INT(11)  NOT NULL ,
+`date_salary` INT(3)  NOT NULL ,
 `checkout_time_salary` DATE NOT NULL DEFAULT '0000-00-00',
 PRIMARY KEY (`id`)
 ) DEFAULT COLLATE=utf8_general_ci;
