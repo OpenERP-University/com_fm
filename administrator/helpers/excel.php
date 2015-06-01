@@ -34,15 +34,15 @@ class FmHelperExcel {
 
         if ($param['month'] && !$param['year']) {
             $objPHPExcel->setActiveSheetIndex(0)
-                    ->setCellValue('A1', JText::_('COM_FM_EXCEL_TITLE') . JText::_('COM_FM_SALARY_INFO_MONTH') . $param['month'] . '');
+                    ->setCellValue('A1', JText::_('COM_FM_EXCEL_TITLE') . JText::_('COM_FM_SALARY_INFO_MONTH_CAP') . $param['month'] . '');
         }
         if ($param['year'] && !$param['month']) {
             $objPHPExcel->setActiveSheetIndex(0)
-                    ->setCellValue('A1', JText::_('COM_FM_EXCEL_TITLE') . JText::_('COM_FM_SALARY_INFO_YEAR') . $param['year'] . '');
+                    ->setCellValue('A1', JText::_('COM_FM_EXCEL_TITLE') . JText::_('COM_FM_SALARY_INFO_YEAR_CAP') . $param['year'] . '');
         }
         if ($param['year'] && $param['month']) {
             $objPHPExcel->setActiveSheetIndex(0)
-                    ->setCellValue('A1', JText::_('COM_FM_EXCEL_TITLE') . JText::_('COM_FM_SALARY_INFO_MONTH') . $param['month'] . JText::_('COM_FM_SALARY_INFO_YEAR') . $param['year'] . '');
+                    ->setCellValue('A1', JText::_('COM_FM_EXCEL_TITLE') . JText::_('COM_FM_SALARY_INFO_MONTH_CAP') . $param['month'] . JText::_('COM_FM_SALARY_INFO_YEAR_CAP') . $param['year'] . '');
         }
         //set font 
         $objPHPExcel->getActiveSheet()->mergeCells('A1:Y3');
@@ -374,15 +374,15 @@ class FmHelperExcel {
 
         if ($param['month'] && !$param['year']) {
             $objPHPExcel->setActiveSheetIndex(0)
-                    ->setCellValue('A1', JText::_('COM_FM_EXCEL_TITLE') . JText::_('COM_FM_SALARY_INFO_MONTH') . $param['month'] . '');
+                    ->setCellValue('A1', JText::_('COM_FM_EXCEL_TITLE') . JText::_('COM_FM_SALARY_INFO_MONTH_CAP') . $param['month'] . '');
         }
         if ($param['year'] && !$param['month']) {
             $objPHPExcel->setActiveSheetIndex(0)
-                    ->setCellValue('A1', JText::_('COM_FM_EXCEL_TITLE') . JText::_('COM_FM_SALARY_INFO_YEAR') . $param['year'] . '');
+                    ->setCellValue('A1', JText::_('COM_FM_EXCEL_TITLE') . JText::_('COM_FM_SALARY_INFO_YEAR_CAP') . $param['year'] . '');
         }
         if ($param['year'] && $param['month']) {
             $objPHPExcel->setActiveSheetIndex(0)
-                    ->setCellValue('A1', JText::_('COM_FM_EXCEL_TITLE') . JText::_('COM_FM_SALARY_INFO_MONTH') . $param['month'] . JText::_('COM_FM_SALARY_INFO_YEAR') . $param['year'] . '');
+                    ->setCellValue('A1', JText::_('COM_FM_EXCEL_TITLE') . JText::_('COM_FM_SALARY_INFO_MONTH_CAP') . $param['month'] . JText::_('COM_FM_SALARY_INFO_YEAR_CAP') . $param['year'] . '');
         }
         //set font 
         $objPHPExcel->getActiveSheet()->mergeCells('A1:Y3');
