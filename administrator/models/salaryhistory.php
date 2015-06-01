@@ -63,11 +63,11 @@ class FmModelSalaryhistory extends JModelAdmin {
      * @param type $salary
      * @return type
      */
-    public function insertInfoPayroll($month = NULL, $year = NULL, $salary = NULL) {
+     public function insertInfoPayroll( $salary = NULL) {
 
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
-        $query = "INSERT INTO `#__fm_history_salary`(`guid`,`workmonth`,`workyear`,`salary`) VALUES (" . $db->quote($db->escape($this->GUID())) . "," . $db->quote($db->escape($month)) . "," . $db->quote($db->escape($year)) . "," . $db->quote(($salary)) . ");";
+        $query = "INSERT INTO `#__fm_history_salary`(`guid`,`workmonth`,`workyear`,`salary`) VALUES (" . $db->quote($db->escape($this->GUID())) . ",DATE_FORMAT(CURRENT_DATE(),'%m')  ,DATE_FORMAT(CURRENT_DATE(),'%Y') ," . $db->quote(($salary)) . ");";
         $db->setQuery($query);
         $result = $db->execute();
         return $result;
