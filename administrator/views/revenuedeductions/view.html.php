@@ -76,7 +76,7 @@ class FmViewRevenuedeductions extends JViewLegacy {
                 JToolBarHelper::custom('revenuedeductions.unpublish', 'unpublish.png', 'unpublish_f2.png', 'JTOOLBAR_UNPUBLISH', true);
             } else if (isset($this->items[0])) {
                 //If this component does not use state then show a direct delete button as we can not trash
-                JToolBarHelper::deleteList('', 'revenuedeductions.delete', 'JTOOLBAR_DELETE');
+//                JToolBarHelper::deleteList('', 'revenuedeductions.delete', 'JTOOLBAR_DELETE');
             }
 
             if (isset($this->items[0]->state)) {
