@@ -136,9 +136,9 @@ echo JText::_('COM_FM_SALARY_INFO_MONTH');
         {
             searchTable(js(this).val());
         });
-        js("#print").click(function () {
-            js('#toolbar-button').remove();
-        });
+//        js("#print").click(function () {
+//            js('#toolbar-button').remove();
+//        });
         //excel
 
 
@@ -203,11 +203,11 @@ echo JText::_('COM_FM_SALARY_INFO_MONTH');
             <div class ="filter-search btn-group pull-left">
                 <input id="filter_search" type="text" title="Search" placeholder="Search" name="filter_search"> </input>
             </div>
-            <div style="padding-left: 10px" class="btn-group pull-left">
+<!--            <div style="padding-left: 10px" class="btn-group pull-left">
                 <div class="input-medium chzn-done">
                     <button id ="print" type="submit" class="btn btn-default" onclick="return false"><?php echo JText::_('COM_FM_SALARY_HISTORY_PRINT') ?></button>
                 </div>
-            </div>
+            </div>-->
             <div style="padding-left: 10px" class="btn-group pull-left">
                 <div class="input-medium chzn-done">
                     <button id ="exportexcel" type="submit" class="btn btn-default" onclick="return false"><?php echo JText::_('COM_FM_SALARY_HISTORY_EXPORT_EXCEL') ?></button>
