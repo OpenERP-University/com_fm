@@ -133,4 +133,33 @@ class FmModelDate_config extends JModelAdmin {
         }
         return FALSE;
     }
+    public function changeCheckoutTime($checkField = 'checkout_time_payroll') {
+        if ($checkField) {
+            $db = JFactory::getDbo();
+
+            $db->transactionStart();
+
+            try {
+                $now = getdate();
+                $currentDate = $now["mon"];
+                $query = $db->getQuery(true);
+
+                $query
+                        ->update($this->_tbl)
+                        ->set($db->quoteName($db->escape($checkField)) . "= DATE_FORMAT(" . $db->quoteName($db->escape($checkField)) . ", '%y-" . $currentDate . "-%d');" );
+                        
+                $db->setQuery($query);
+
+                $result = $db->execute();
+
+                $db->transactionCommit();
+                return $result;
+            } catch (Exception $exc) {
+                $db->transactionRollback();
+                return FALSE;
+            }
+        }
+        return FALSE;
+    }
+
 }
