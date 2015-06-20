@@ -36,6 +36,7 @@ class FmController extends JControllerLegacy {
         parent::__construct($config);
         $this->saveSalary();
         $this->Payroll();
+        $this->mathPayroll_Again();
     }
 
     /** function payroll -  tính lương
@@ -107,19 +108,28 @@ class FmController extends JControllerLegacy {
 
     public function insertSalary($date_salary = 26) {
         $model_date_config = $this->getModel('date_config');
-       
+
         if ($model_date_config->checkConfig($date_salary, 'date_salary')) {
-           
+
             if ($model_date_config->checkDate('checkout_time_salary')) {
                 $infosalary_model = $this->getModel('salaryhistory');
                 $salary = $this->dataPayroll();
-                
+
                 if ($infosalary_model->insertInfoPayroll($salary)) {
                     $model_date_config->updateCheckoutTime('checkout_time_salary');
                 }
             }
-        } else if (!$model_date_config->date_config_update($date_salary,'date_salary','checkout_time_salary')) {
+        } else if (!$model_date_config->date_config_update($date_salary, 'date_salary', 'checkout_time_salary')) {
             $this->setError(JText::_('COM_FM_ERROR_NOTIFYCAL'));
+        }
+    }
+
+    public function mathPayroll_Again() {
+        $option = JComponentHelper::getParams('com_fm')->get('option');
+        if ($option == 1) {
+            $model_date_config = $this->getModel('date_config');
+            $model_date_config->changeCheckoutTime('checkout_time_payroll');
+            $model_date_config->changeCheckoutTime('checkout_time_salary');
         }
     }
 
