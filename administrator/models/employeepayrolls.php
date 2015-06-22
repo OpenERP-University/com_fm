@@ -376,9 +376,11 @@ class FmModelEmployeepayrolls extends JModelList {
                 //số điện, nước, nhà
                 $SoDien[$i] = (float) $GiamTru_CB[$i]->pay_electricity;
                 $SoNuoc[$i] = (float) $GiamTru_CB[$i]->water_charges;
-                $TienNha[$i] = (float) $GiamTru_CB[$i]->rent;
+                //$TienNha[$i] = (float) $GiamTru_CB[$i]->rent;
+                $LoaiNha[$i]=(float) $GiamTru_CB[$i]->house_type;
+                $SoCan[$i]= (float) $GiamTru_CB[$i]->rent;
                 //các loại giảm trừ
-                $CacKhoan_GT[$i] = $this->GiamTru($heso, $SoDien[$i], $SoNuoc[$i], $Huong_Luong[$i], $LuongCoBan, $Heso_ML[$i], $HSPC_VK[$i], $HSPC_CV[$i], $HSPC_TN[$i], $LoaiCB[$i], $DiHoc[$i], $TrangThai[$i]);
+                $CacKhoan_GT[$i] = $this->GiamTru($heso, $SoDien[$i],$LoaiNha[$i],$SoCan[$i], $SoNuoc[$i], $Huong_Luong[$i], $LuongCoBan, $Heso_ML[$i], $HSPC_VK[$i], $HSPC_CV[$i], $HSPC_TN[$i], $LoaiCB[$i], $DiHoc[$i], $TrangThai[$i]);
                 // các hệ số phu cấp khác
                 $ThuNhapTT = (float) $heso->extra_income;
                 $HSPC_QD36 = (float) $heso->allowance_36;
@@ -638,7 +640,7 @@ class FmModelEmployeepayrolls extends JModelList {
             $db = JFactory::getDbo();
             $query = $db->getQuery(true);
             $query
-                    ->select(array($db->quoteName('pay_electricity'), $db->quoteName('water_charges'), $db->quoteName('rent'), $db->quoteName('detain_type'), $db->quoteName('detain')))
+                    ->select(array($db->quoteName('pay_electricity'), $db->quoteName('water_charges'),$db->quoteName('house_type'), $db->quoteName('rent'), $db->quoteName('detain_type'), $db->quoteName('detain')))
                     ->from('`#__fm_revenue_deduction`')
                     ->where($db->quoteName('employee_guid') . ' = ' . $db->quote($db->escape($employee_guid)));
             $db->setQuery($query);
@@ -806,11 +808,19 @@ class FmModelEmployeepayrolls extends JModelList {
      * @param type $trangthai // trạng thái đi làm hay nghỉ
      * @return array // mảng các loại giảm trừ
      */
-    public function GiamTru($heso = array(), $pay_electricity = NULL, $water_charges = NULL, $Huong_Luong = NULL, $LuongCoBan = NULL, $HSML = NULL, $HSPC_VK = NULL, $HSPC_CV = NULL, $HSPC_TN = NULL, $loaicanbo = Null, $dihoc = NULL, $trangthai = Null) {
+    public function GiamTru($heso = array(), $pay_electricity = NULL,$house_type = NULL,$rent= NULL, $water_charges = NULL, $Huong_Luong = NULL, $LuongCoBan = NULL, $HSML = NULL, $HSPC_VK = NULL, $HSPC_CV = NULL, $HSPC_TN = NULL, $loaicanbo = Null, $dihoc = NULL, $trangthai = Null) {
         if ($pay_electricity || $water_charges) {
             $TienDien = $pay_electricity * (float) $heso->electricity_1;
 
             $TienNuoc = $water_charges * (float) $heso->cost_water;
+            if($house_type ==1)
+            {
+                $TienNha = $rent*$heso->rent_old;
+            }
+            else
+            {
+                 $TienNha = $rent*$heso->rent_new;
+            }
         } else {
             $TienDien = 0;
             $TienNuoc = 0;
@@ -852,6 +862,7 @@ class FmModelEmployeepayrolls extends JModelList {
         $TinhGiamTru = array(
             "TienDien" => $TienDien,
             "TienNuoc" => $TienNuoc,
+            "TienNha"=>$TienNha,
             "BHYT" => $TinhBHYT,
             "BHXH" => $TinhBHXH,
             "BHTN" => $TinhBHTN
