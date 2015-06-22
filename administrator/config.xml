@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
-    <fieldset label="COM_FM" name="fm">
+     <fieldset label="COM_FM" name="fm">
         
         <field
             name="save_history"
@@ -24,23 +24,38 @@
     </fieldset>
    
         
-        <fieldset label="COM_FM_DATE_HISTRORY" name="payroll_fm" >
-        <field name="date_salary" type="text" 
-               filter="integer"
-               default="26" 
-               label="COM_FM_DATE"
-               description="COM_FM_DATE_DESCRIPTION"
-         />
-        </fieldset>
-        
-         <fieldset label="COM_FM_EMPLOYEE_PAYROLL_DATE_SELECT" name="salary_fm" >
+    <fieldset label="COM_FM_EMPLOYEE_PAYROLL_DATE_SELECT" name="salary_fm" >
         <field name="date_payroll" type="text" 
                filter="integer"
                default="25" 
                label="COM_FM_DATE"
                description="COM_FM_EMPLOYEE_PAYROLL_DATE_DESCRIPTION"
          />
-        </fieldset>
+    </fieldset>
+    <fieldset label="COM_FM_DATE_HISTRORY" name="payroll_fm" >
+        <field name="date_salary" type="text" 
+               filter="integer"
+               default="26" 
+               label="COM_FM_DATE"
+               description="COM_FM_DATE_DESCRIPTION"
+         />
+    </fieldset>
+        
+      <fieldset label="COM_FM_MATH_COMBACK" name="options">
+        
+        <field
+            name="option"
+            type="radio"
+            class="btn-group btn-group-yesno"
+            default="0"
+            label="COM_FM_ON_OFF"
+            description="COM_FM_COMBACK_DESCRIPTION"
+        >
+            <option value="1">JYES</option>
+            <option value="0">JNO</option>
+        </field>
+     </fieldset>
+        
         
          <fieldset 
         name="permissions"
