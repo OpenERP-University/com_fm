@@ -53,6 +53,35 @@ $document->addStyleSheet('components/com_fm/assets/css/fm.css');
 		}
 	});
 	js("#jform_employee_guid").trigger("liszt:updated");
+        js('#jform_fe_allowances').keyup(function () {
+            js('#jform_fe_allowances').val(checkvalue(js('#jform_fe_allowances').val()));
+        });
+        js('#jform_earn_salary').keyup(function () {
+            js('#jform_earn_salary').val(checkvalue(js('#jform_earn_salary').val()));
+        });
+        js('#jform_allowance_other').keyup(function () {
+            js('#jform_allowance_other').val(checkvalue(js('#jform_allowance_other').val()));
+        });
+        js('#jform_info_allowance').keyup(function () {
+            js('#jform_info_allowance').val(checkvalue(js('#jform_info_allowance').val()));
+        });
+         js('#jform_info_payroll').keyup(function () {
+            js('#jform_info_payroll').val(checkvalue(js('#jform_info_payroll').val()));
+        });
+        
+
+        function checkvalue(data)
+        {
+            for (var i = 0; i < data.length; i++) {
+                if (!parseInt(data[i])) {
+                    if (data[i] !== '0') {
+                        data = data.substring(0, i);
+                    }
+                }
+
+            }
+            return data;
+        }
     });
 
     Joomla.submitbutton = function(task)
