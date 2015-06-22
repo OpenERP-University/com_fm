@@ -20,7 +20,7 @@
 *
 * 
 * @version 1.0.0
-* @package com_hrm
+* @package com_fm
 * @copyright Copyright (c) 2015 Open ERP University - Hanoi University of Mining and Geology (HUMG)- http://humg.edu.vn 
 * @license http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt
 * @group OpenERP University - Chuyen Trung Tran <chuyentt@gmail.com> 
