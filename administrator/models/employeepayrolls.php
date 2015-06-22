@@ -379,6 +379,7 @@ class FmModelEmployeepayrolls extends JModelList {
                 //$TienNha[$i] = (float) $GiamTru_CB[$i]->rent;
                 $LoaiNha[$i]=(float) $GiamTru_CB[$i]->house_type;
                 $SoCan[$i]= (float) $GiamTru_CB[$i]->rent;
+                
                 //các loại giảm trừ
                 $CacKhoan_GT[$i] = $this->GiamTru($heso, $SoDien[$i],$LoaiNha[$i],$SoCan[$i], $SoNuoc[$i], $Huong_Luong[$i], $LuongCoBan, $Heso_ML[$i], $HSPC_VK[$i], $HSPC_CV[$i], $HSPC_TN[$i], $LoaiCB[$i], $DiHoc[$i], $TrangThai[$i]);
                 // các hệ số phu cấp khác
@@ -405,18 +406,18 @@ class FmModelEmployeepayrolls extends JModelList {
                 //Cac khoan giam tru
                 $TienDien[$i] = $CacKhoan_GT[$i]['TienDien'];
                 $TienNuoc[$i] = $CacKhoan_GT[$i]['TienNuoc'];
-                $TienNha[$i]=$CacKhoan_GT[$i]['TienNha'];
+                $TienNha[$i]= $CacKhoan_GT[$i]['TienNha'];
                 $TinhBHXH[$i] = $CacKhoan_GT[$i]['BHXH'];
                 $TinhBHYT[$i] = $CacKhoan_GT[$i]['BHYT'];
                 $TinhBHTN[$i] = $CacKhoan_GT[$i]['BHTN'];
-
+                
                 $TinhTamGiu[$i] = $this->TinhTamGiu($LoaiTamGiu[$i], $ThongSo[$i], $Luong_PC1[$i]);
                 $TienGiamTru[$i] = $TienDien[$i] + $TienNha[$i] + $TienNuoc[$i] + $TinhTamGiu[$i] + $TinhBHTN[$i] + $TinhBHXH[$i] + $TinhBHYT[$i];
 
                 $Luong_PCSau[$i] = $Luong_PC[$i] - $TienGiamTru[$i];
 
                 $TienLuong[$i] = $this->TinhLuong($Luong_PCSau[$i], $TinhThuNhap_TT[$i], $TienPC_QD36[$i], $TTDieuChinhPC[$i], $TTDieuChinhLuong[$i], $TrangThai[$i]);
-
+               
                 $i++;
             }
         }
@@ -446,7 +447,7 @@ class FmModelEmployeepayrolls extends JModelList {
                 "employee_guid" => $employee_guid
             );
         }
-
+        
         return $this->TienLuong;
     }
 
@@ -810,7 +811,7 @@ class FmModelEmployeepayrolls extends JModelList {
      * @return array // mảng các loại giảm trừ
      */
     public function GiamTru($heso = array(), $pay_electricity = NULL,$house_type = NULL,$rent= NULL, $water_charges = NULL, $Huong_Luong = NULL, $LuongCoBan = NULL, $HSML = NULL, $HSPC_VK = NULL, $HSPC_CV = NULL, $HSPC_TN = NULL, $loaicanbo = Null, $dihoc = NULL, $trangthai = Null) {
-        if ($pay_electricity || $water_charges) {
+        if ($pay_electricity || $water_charges||$rent) {
             $TienDien = $pay_electricity * (float) $heso->electricity_1;
 
             $TienNuoc = $water_charges * (float) $heso->cost_water;

@@ -45,13 +45,10 @@
                                                     
                                                     
                                                     filter="safehtml" /> 
-       
-       <field name="house_type"type="radio"
+        <field name="house_type" type="radio"
                class="btn-group"
-            default="1"
             label="COM_FM_FORM_LBL_REVENUEDEDUCTION_HOUSE_TYPE"
             description="COM_FM_FORM_DESC_REVENUEDEDUCTION_HOUSE_TYPE" 
-        
             option_on="Yes"
             option_off="Yes">
                 <option value="1">Nhà cũ</option>
@@ -66,15 +63,13 @@
                                                     
                                                     
                                                     filter="safehtml" /> 
-       
+      
 
        <field name="detain_type" type="list"
                 
             label="COM_FM_FORM_LBL_REVENUEDEDUCTION_DETAIN_TYPE"
             description="COM_FM_FORM_DESC_REVENUEDEDUCTION_DETAIN_TYPE" 
-                
-                
-                
+ 
             menu_published="0"
             filter="raw"
             option_on="Yes"
