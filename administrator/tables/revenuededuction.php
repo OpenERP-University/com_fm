@@ -174,7 +174,8 @@ class FmTablerevenuededuction extends JTable {
         if (property_exists($this, 'ordering') && $this->id == 0) {
             $this->ordering = self::getNextOrder();
         }
-        if ( $this->pay_electricity !=0 ) {
+        
+          if ( $this->pay_electricity !=0 ) {
             if (!(float) $this->pay_electricity ) {
                 $this->setError(JText::_('COM_FM_ERROR'));
                 return FALSE;
@@ -198,6 +199,7 @@ class FmTablerevenuededuction extends JTable {
                 return FALSE;
             }
         }
+
 
         return parent::check();
     }

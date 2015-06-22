@@ -168,7 +168,8 @@ class FmTableconfig extends JTable {
         if (property_exists($this, 'ordering') && $this->id == 0) {
             $this->ordering = self::getNextOrder();
         }
-         if ($this->social_insurance_employee != 0) {
+        
+          if ($this->social_insurance_employee != 0) {
             if (!(float) $this->social_insurance_employee) {
                 $this->setError(JText::_('COM_FM_ERROR'));
                 return FALSE;
