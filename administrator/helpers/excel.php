@@ -353,13 +353,13 @@ class FmHelperExcel {
 // Redirect output to a clientâ€™s web browser (Excel2007)
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         if ($param['month'] && !$param['year']) {
-            header('Content-Disposition: attachment;filename="' . JText::_('COM_FM_SALARY_INFO') . JText::_('COM_FM_SALARY_INFO_MONTH') . $param['month'] . '.xlsx"' . '"');
+            header('Content-Disposition: attachment;filename="' . JText::_('COM_FM_SALARY_INFO') . JText::_('COM_FM_SALARY_INFO_MONTH') . $param['month'] . '.xlsx"');
         }
         if ($param['year'] && !$param['month']) {
-            header('Content-Disposition: attachment;filename="' . JText::_('COM_FM_SALARY_INFO') . JText::_('COM_FM_SALARY_INFO_YEAR') . $param['year'] . '.xlsx"' . '"');
+            header('Content-Disposition: attachment;filename="' . JText::_('COM_FM_SALARY_INFO') . JText::_('COM_FM_SALARY_INFO_YEAR') . $param['year'] . '.xlsx"');
         }
         if ($param['year'] && $param['month']) {
-            header('Content-Disposition: attachment;filename="' . JText::_('COM_FM_SALARY_INFO') . JText::_('COM_FM_SALARY_INFO_MONTH') . $param['month'] . JText::_('COM_FM_SALARY_INFO_YEAR') . $param['year'] . '.xlsx"' . '"');
+            header('Content-Disposition: attachment;filename="' . JText::_('COM_FM_SALARY_INFO') . JText::_('COM_FM_SALARY_INFO_MONTH') . $param['month'] . JText::_('COM_FM_SALARY_INFO_YEAR') . $param['year'] . '.xlsx"');
         }
         // header('Content-Disposition: attachment;filename="01simple.xlsx"');
         header('Cache-Control: max-age=0');
@@ -700,13 +700,13 @@ class FmHelperExcel {
         
          if ($param['month'] && !$param['year']&& $n==1) {
              
-            header('Content-Disposition: attachment;filename="' . JText::_('COM_FM_SALARY_INFO_EMPLOYEE').$data['fullname'][0]. JText::_('COM_FM_SALARY_INFO_MONTH') . $param['month'] . '.xlsx"' . '"');
+            header('Content-Disposition: attachment;filename="' . JText::_('COM_FM_SALARY_INFO_EMPLOYEE').$data['fullname'][0]. JText::_('COM_FM_SALARY_INFO_MONTH') . $param['month'] . '.xlsx"' );
         }
         if ($param['year'] && !$param['month']&& $n==1 ) {
-            header('Content-Disposition: attachment;filename="' . JText::_('COM_FM_SALARY_INFO_EMPLOYEE').$data['fullname'][0] . JText::_('COM_FM_SALARY_INFO_YEAR') . $param['year'] . '.xlsx"' . '"');
+            header('Content-Disposition: attachment;filename="' . JText::_('COM_FM_SALARY_INFO_EMPLOYEE').$data['fullname'][0] . JText::_('COM_FM_SALARY_INFO_YEAR') . $param['year'] . '.xlsx"' );
         }
         if ($param['year'] && $param['month']&& $n==1) {
-            header('Content-Disposition: attachment;filename="' . JText::_('COM_FM_SALARY_INFO_EMPLOYEE') .$data['fullname'][0]. JText::_('COM_FM_SALARY_INFO_MONTH') . $param['month'] . JText::_('COM_FM_SALARY_INFO_YEAR') . $param['year'] . '.xlsx"' . '"');
+            header('Content-Disposition: attachment;filename="' . JText::_('COM_FM_SALARY_INFO_EMPLOYEE') .$data['fullname'][0]. JText::_('COM_FM_SALARY_INFO_MONTH') . $param['month'] . JText::_('COM_FM_SALARY_INFO_YEAR') . $param['year'] . '.xlsx"' );
         }
         if ($param['month'] && !$param['year'] &&$n>1) {
            
@@ -716,7 +716,7 @@ class FmHelperExcel {
             header('Content-Disposition: attachment;filename="' . JText::_('COM_FM_SALARY_INFO_EMPLOYEE') . JText::_('COM_FM_SALARY_INFO_YEAR') . $param['year'] . '.xlsx"' . '"');
         }
         if ($param['year'] && $param['month']&& $n>1) {
-            header('Content-Disposition: attachment;filename="' . JText::_('COM_FM_SALARY_INFO_EMPLOYEE') . JText::_('COM_FM_SALARY_INFO_MONTH') . $param['month'] . JText::_('COM_FM_SALARY_INFO_YEAR') . $param['year'] . '.xlsx"' . '"');
+            header('Content-Disposition: attachment;filename="' . JText::_('COM_FM_SALARY_INFO_EMPLOYEE') . JText::_('COM_FM_SALARY_INFO_MONTH') . $param['month'] . JText::_('COM_FM_SALARY_INFO_YEAR') . $param['year'] . '.xlsx"' );
         }
         // header('Content-Disposition: attachment;filename="01simple.xlsx"');
         header('Cache-Control: max-age=0');
