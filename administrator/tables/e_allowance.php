@@ -176,38 +176,53 @@ class FmTablee_allowance extends JTable {
             $this->ordering = self::getNextOrder();
         }
 
-        if ($this->fe_allowances != 0) {
-            if (!(float) $this->fe_allowances) {
+        if ($this->fe_allowances != NULL) {
+            if ($this->checkvalue($this->fe_allowances) == FALSE) {
                 $this->setError(JText::_('COM_FM_ERROR'));
                 return FALSE;
             }
         }
-        if ($this->earn_salary != 0) {
-            if (!(float) $this->earn_salary) {
+        if ($this->earn_salary != NULL) {
+            if ($this->checkvalue($this->earn_salary) == FALSE) {
                 $this->setError(JText::_('COM_FM_ERROR'));
                 return FALSE;
             }
         }
-        if ($this->allowance_other != 0) {
-            if (!(float) $this->allowance_other) {
+        if ($this->allowance_other != NULL) {
+            if ($this->checkvalue($this->allowance_other) == FALSE) {
                 $this->setError(JText::_('COM_FM_ERROR'));
                 return FALSE;
             }
         }
-        if ($this->info_allowance != 0) {
-            if (!(float) $this->info_allowance) {
+        if ($this->info_allowance != NULL) {
+            if ($this->checkvalue($this->info_allowance) == FALSE) {
                 $this->setError(JText::_('COM_FM_ERROR'));
                 return FALSE;
             }
         }
 
-        if ($this->info_payroll != 0) {
-            if (!(float) $this->info_payroll) {
+        if ($this->info_payroll != NULL) {
+            if ($this->checkvalue($this->info_payroll) == FALSE) {
                 $this->setError(JText::_('COM_FM_ERROR'));
                 return FALSE;
             }
         }
         return parent::check();
+    }
+
+    public function checkvalue($data) {
+
+        $data = (string) $data;
+        $lengthstr = strlen($data);
+        $array = str_split($data);
+
+        for ($i = 0; $i < $lengthstr; $i++) {
+            if (!(is_numeric($array[$i]))) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+        return TRUE;
     }
 
     /**

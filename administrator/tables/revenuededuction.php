@@ -1,35 +1,35 @@
 <?php
 
 /**
-* Open ERP University - HUMG
-*
-* Copyright (c) 2015 Open ERP University <https://github.com/OpenERP-University> - Hanoi University of Mining and Geology (HUMG)- http://humg.edu.vn 
-*
-* This component is free software; you can redistribute it and/or
-* modify it under the terms of the GNU Lesser General Public
-* License as published by the Free Software Foundation; either
-* version 2.1 of the License, or (at your option) any later version.
-*
-* This component is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-* Lesser General Public License for more details.
-*
-* You should have received a copy of the GNU Lesser General Public
-* License along with this component; if not, write to the Free Software
-* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
-*
-* 
-* @version 1.0.0
-* @package com_fm
-* @copyright Copyright (c) 2015 Open ERP University - Hanoi University of Mining and Geology (HUMG)- http://humg.edu.vn 
-* @license http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt
-* @group OpenERP University - Chuyen Trung Tran <chuyentt@gmail.com> 
-* @author Leader: Tran Xuan Duc <ductranxuan.29710@gmail.com> 
-* @author Dinh Trong Nghia <dinhtrongnghia92@gmail.com> 
-* @author Nguyen Dau Hoang <hoangdau17592@gmail.com> 
-* @author Nguyen Duc Nhan <nhannd92@gmail.com> 
-*/
+ * Open ERP University - HUMG
+ *
+ * Copyright (c) 2015 Open ERP University <https://github.com/OpenERP-University> - Hanoi University of Mining and Geology (HUMG)- http://humg.edu.vn 
+ *
+ * This component is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This component is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this component; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ *
+ * 
+ * @version 1.0.0
+ * @package com_fm
+ * @copyright Copyright (c) 2015 Open ERP University - Hanoi University of Mining and Geology (HUMG)- http://humg.edu.vn 
+ * @license http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt
+ * @group OpenERP University - Chuyen Trung Tran <chuyentt@gmail.com> 
+ * @author Leader: Tran Xuan Duc <ductranxuan.29710@gmail.com> 
+ * @author Dinh Trong Nghia <dinhtrongnghia92@gmail.com> 
+ * @author Nguyen Dau Hoang <hoangdau17592@gmail.com> 
+ * @author Nguyen Duc Nhan <nhannd92@gmail.com> 
+ */
 // No direct access
 defined('_JEXEC') or die;
 
@@ -174,27 +174,27 @@ class FmTablerevenuededuction extends JTable {
         if (property_exists($this, 'ordering') && $this->id == 0) {
             $this->ordering = self::getNextOrder();
         }
-        
-          if ( $this->pay_electricity !=0 ) {
-            if (!(float) $this->pay_electricity ) {
+
+        if ($this->pay_electricity != NULL) {
+            if ($this->checkvalue($this->pay_electricity) == FALSE) {
                 $this->setError(JText::_('COM_FM_ERROR'));
                 return FALSE;
             }
         }
-         if (  $this->water_charges!=0 ) {
-            if (!(float) $this->water_charges ) {
+        if ($this->water_charges != NULL) {
+            if ($this->checkvalue($this->water_charges) == FALSE) {
                 $this->setError(JText::_('COM_FM_ERROR'));
                 return FALSE;
             }
         }
-         if (  $this->rent !=0 ) {
-            if ( !(int) $this->rent ) {
+        if ($this->rent != NULL) {
+            if ($this->checkvalue($this->rent) == FALSE) {
                 $this->setError(JText::_('COM_FM_ERROR'));
                 return FALSE;
             }
         }
-         if ( $this->detain !=0) {
-            if ( !(float) $this->detain) {
+        if ($this->detain != NULL) {
+            if ($this->checkvalue($this->detain) == FALSE) {
                 $this->setError(JText::_('COM_FM_ERROR'));
                 return FALSE;
             }
@@ -202,6 +202,21 @@ class FmTablerevenuededuction extends JTable {
 
 
         return parent::check();
+    }
+
+    public function checkvalue($data) {
+
+        $data = (string) $data;
+        $lengthstr = strlen($data);
+        $array = str_split($data);
+
+        for ($i = 0; $i < $lengthstr; $i++) {
+            if (!(is_numeric($array[$i]))) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+        return TRUE;
     }
 
     /**

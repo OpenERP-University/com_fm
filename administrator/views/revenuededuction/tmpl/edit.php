@@ -64,6 +64,15 @@ $document->addStyleSheet('components/com_fm/assets/css/fm.css');
         });
         js('#jform_detain').keyup(function () {
             js('#jform_detain').val(checkvalue(js('#jform_detain').val()));
+            var gt_detain_stype = js('#jform_detain_type').val();
+            var gt_detain = parseInt(js('#jform_detain').val());
+            if (gt_detain_stype == 1 && gt_detain >= 30) {
+                js('#notify-text').html("<span>Số ngày nhập quá lớn!</span>");
+            }
+            else
+            {
+                js('#notify-text').html("<span></span>");
+            }
         });
 
 
@@ -150,6 +159,8 @@ $document->addStyleSheet('components/com_fm/assets/css/fm.css');
                         <div class="control-label"><?php echo $this->form->getLabel('detain'); ?></div>
                         <div class="controls"><?php echo $this->form->getInput('detain'); ?></div>
                     </div>
+                    <div  class="controls" style="color: red" id="notify-text"> </div>
+
                     <input type="hidden" name="jform[time_update]" value="<?php echo $this->item->time_update; ?>" />
 
 

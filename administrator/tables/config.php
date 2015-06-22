@@ -1,35 +1,35 @@
 <?php
 
 /**
-* Open ERP University - HUMG
-*
-* Copyright (c) 2015 Open ERP University <https://github.com/OpenERP-University> - Hanoi University of Mining and Geology (HUMG)- http://humg.edu.vn 
-*
-* This component is free software; you can redistribute it and/or
-* modify it under the terms of the GNU Lesser General Public
-* License as published by the Free Software Foundation; either
-* version 2.1 of the License, or (at your option) any later version.
-*
-* This component is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
-* Lesser General Public License for more details.
-*
-* You should have received a copy of the GNU Lesser General Public
-* License along with this component; if not, write to the Free Software
-* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
-*
-* 
-* @version 1.0.0
-* @package com_fm
-* @copyright Copyright (c) 2015 Open ERP University - Hanoi University of Mining and Geology (HUMG)- http://humg.edu.vn 
-* @license http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt
-* @group OpenERP University - Chuyen Trung Tran <chuyentt@gmail.com> 
-* @author Leader: Tran Xuan Duc <ductranxuan.29710@gmail.com> 
-* @author Dinh Trong Nghia <dinhtrongnghia92@gmail.com> 
-* @author Nguyen Dau Hoang <hoangdau17592@gmail.com> 
-* @author Nguyen Duc Nhan <nhannd92@gmail.com> 
-*/
+ * Open ERP University - HUMG
+ *
+ * Copyright (c) 2015 Open ERP University <https://github.com/OpenERP-University> - Hanoi University of Mining and Geology (HUMG)- http://humg.edu.vn 
+ *
+ * This component is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
+ *
+ * This component is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this component; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ *
+ * 
+ * @version 1.0.0
+ * @package com_fm
+ * @copyright Copyright (c) 2015 Open ERP University - Hanoi University of Mining and Geology (HUMG)- http://humg.edu.vn 
+ * @license http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt
+ * @group OpenERP University - Chuyen Trung Tran <chuyentt@gmail.com> 
+ * @author Leader: Tran Xuan Duc <ductranxuan.29710@gmail.com> 
+ * @author Dinh Trong Nghia <dinhtrongnghia92@gmail.com> 
+ * @author Nguyen Dau Hoang <hoangdau17592@gmail.com> 
+ * @author Nguyen Duc Nhan <nhannd92@gmail.com> 
+ */
 // No direct access
 defined('_JEXEC') or die;
 
@@ -168,145 +168,174 @@ class FmTableconfig extends JTable {
         if (property_exists($this, 'ordering') && $this->id == 0) {
             $this->ordering = self::getNextOrder();
         }
-        
-          if ($this->social_insurance_employee != 0) {
-            if (!(float) $this->social_insurance_employee) {
+
+        if ($this->social_insurance_employee != Null) {
+
+            if (($this->checkvalue($this->social_insurance_employee)) == FALSE) {
                 $this->setError(JText::_('COM_FM_ERROR'));
                 return FALSE;
             }
         }
-        if ($this->social_insurance_support != 0) {
-            if (!(float) $this->social_insurance_support) {
-                $this->setError(JText::_('COM_FM_ERROR'));
-                return FALSE;
-            }
-        }
-        if ($this->medical_insurance_employee != 0) {
-            if (!(float) $this->medical_insurance_employee) {
-                $this->setError(JText::_('COM_FM_ERROR'));
-                return FALSE;
-            }
-        }
-        if ($this->medical_insurance_support != 0) {
-            if (!(float) $this->medical_insurance_support) {
+        if ($this->social_insurance_support != NULL) {
+            if ($this->checkvalue($this->social_insurance_support) == FALSE) {
                 $this->setError(JText::_('COM_FM_ERROR'));
                 return FALSE;
             }
         }
 
-         if ($this->unemployment_insurance_employee != 0) {
-            if (!(float) $this->unemployment_insurance_employee) {
+        if ($this->medical_insurance_employee != NULL) {
+            if ($this->checkvalue($this->medical_insurance_employee) == FALSE) {
                 $this->setError(JText::_('COM_FM_ERROR'));
                 return FALSE;
             }
         }
-         if ($this->unemployment_insurance_support != 0) {
-            if (!(float) $this->unemployment_insurance_support) {
-                $this->setError(JText::_('COM_FM_ERROR'));
-                return FALSE;
-            }
-        }
-        if ($this->union_employee != 0) {
-            if (!(float) $this->union_employee) {
-                $this->setError(JText::_('COM_FM_ERROR'));
-                return FALSE;
-            }
-        }
-        if ($this->union_support != 0) {
-            if (!(float) $this->union_support) {
-                $this->setError(JText::_('COM_FM_ERROR'));
-                return FALSE;
-            }
-        }
-        if ($this->allowance_x != 0) {
-            if (!(float) $this->allowance_x) {
+        if ($this->medical_insurance_support != NULL) {
+            if ($this->checkvalue($this->medical_insurance_support) == FALSE) {
                 $this->setError(JText::_('COM_FM_ERROR'));
                 return FALSE;
             }
         }
 
-         if ($this->allowance_y != 0) {
-            if (!(float) $this->allowance_y) {
+        if ($this->unemployment_insurance_employee != NULL) {
+            if ($this->checkvalue($this->unemployment_insurance_employee) == FALSE) {
                 $this->setError(JText::_('COM_FM_ERROR'));
                 return FALSE;
             }
         }
-         if ($this->allowance_z != 0) {
-            if (!(float) $this->allowance_z) {
+        if ($this->unemployment_insurance_support != NULL) {
+            if ($this->checkvalue($this->unemployment_insurance_support) == FALSE) {
                 $this->setError(JText::_('COM_FM_ERROR'));
                 return FALSE;
             }
         }
-        if ($this->other_allowance != 0) {
-            if (!(float) $this->other_allowance) {
+        if ($this->union_employee != NULL) {
+            if ($this->checkvalue($this->union_employee) == FALSE) {
                 $this->setError(JText::_('COM_FM_ERROR'));
                 return FALSE;
             }
         }
-        if ($this->cost_water != 0) {
-            if (!(float) $this->cost_water) {
+        if ($this->union_support != NULL) {
+            if ($this->checkvalue($this->union_support) == FALSE) {
                 $this->setError(JText::_('COM_FM_ERROR'));
                 return FALSE;
             }
         }
-        if ($this->electricity_1 != 0) {
-            if (!(float) $this->electricity_1) {
-                $this->setError(JText::_('COM_FM_ERROR'));
-                return FALSE;
-            }
-        }
-
-         if ($this->electricity_2 != 0) {
-            if (!(float) $this->electricity_2) {
-                $this->setError(JText::_('COM_FM_ERROR'));
-                return FALSE;
-            }
-        }
-         if ($this->electricity_3 != 0) {
-            if (!(float) $this->electricity_3) {
-                $this->setError(JText::_('COM_FM_ERROR'));
-                return FALSE;
-            }
-        }
-        if ($this->electricity_4 != 0) {
-            if (!(float) $this->electricity_4) {
-                $this->setError(JText::_('COM_FM_ERROR'));
-                return FALSE;
-            }
-        }
-        if ($this->electricity_5 != 0) {
-            if (!(float) $this->electricity_5) {
-                $this->setError(JText::_('COM_FM_ERROR'));
-                return FALSE;
-            }
-        }
-        if ($this->electricity_6 != 0) {
-            if (!(float) $this->electricity_6) {
+        if ($this->allowance_x != NULL) {
+            if ($this->checkvalue($this->allowance_x) == FALSE) {
                 $this->setError(JText::_('COM_FM_ERROR'));
                 return FALSE;
             }
         }
 
-         if ($this->allowance_36 != 0) {
-            if (!(float) $this->allowance_36) {
+        if ($this->allowance_y != NULL) {
+            if ($this->checkvalue($this->allowance_y) == FALSE) {
                 $this->setError(JText::_('COM_FM_ERROR'));
                 return FALSE;
             }
         }
-         if ($this->base_pay != 0) {
-            if (!(float) $this->base_pay) {
+        if ($this->allowance_z != NULL) {
+            if ($this->checkvalue($this->allowance_z) == FALSE) {
                 $this->setError(JText::_('COM_FM_ERROR'));
                 return FALSE;
             }
         }
-        if ($this->extra_income != 0) {
-            if (!(float) $this->extra_income) {
+        if ($this->other_allowance != NULL) {
+            if ($this->checkvalue($this->other_allowance) == FALSE) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+        if ($this->rent_old != NULL) {
+            if ($this->checkvalue($this->rent_old) == FALSE) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+        if ($this->rent_new != NULL) {
+            if ($this->checkvalue($this->rent_new) == FALSE) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+        if ($this->cost_water != NULL) {
+            if ($this->checkvalue($this->cost_water) == FALSE) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+        if ($this->electricity_1 != NULL) {
+            if ($this->checkvalue($this->electricity_1) == FALSE) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+
+        if ($this->electricity_2 != NULL) {
+            if ($this->checkvalue($this->electricity_2) == FALSE) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+        if ($this->electricity_3 != NULL) {
+            if ($this->checkvalue($this->electricity_3) == FALSE) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+        if ($this->electricity_4 != NULL) {
+            if ($this->checkvalue($this->electricity_4) == FALSE) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+        if ($this->electricity_5 != NULL) {
+            if ($this->checkvalue($this->electricity_5) == FALSE) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+        if ($this->electricity_6 != NULL) {
+            if ($this->checkvalue($this->electricity_6) == FALSE) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+
+        if ($this->allowance_36 != NULL) {
+            if ($this->checkvalue($this->allowance_36) == FALSE) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+        if ($this->base_pay != NULL) {
+            if ($this->checkvalue( $this->base_pay)==FALSE) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+        if ($this->extra_income != NULL) {
+            if ($this->checkvalue( $this->extra_income)==FALSE) {
                 $this->setError(JText::_('COM_FM_ERROR'));
                 return FALSE;
             }
         }
 
         return parent::check();
+    }
+
+    public function checkvalue($data) {
+
+        $data = (string) $data;
+        $lengthstr = strlen($data);
+        $array = str_split($data);
+
+        for ($i = 0; $i < $lengthstr; $i++) {
+            if (!(is_numeric($array[$i]))) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+        return TRUE;
     }
 
     /**
