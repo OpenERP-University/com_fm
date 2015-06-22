@@ -85,9 +85,6 @@ PRIMARY KEY (`id`)
 ) DEFAULT COLLATE=utf8_general_ci;
 
 
-
-
-
 CREATE TABLE IF NOT EXISTS `#__fm_employee_payroll` (
 `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
 
@@ -165,7 +162,7 @@ WHERE NOT EXISTS (SELECT `type_alias` FROM `#__content_types` WHERE `type_alias`
 Insert config
 **/
 
-INSERT INTO `y4x1k_fm_config` (`id`, `asset_id`, `ordering`, `state`, `checked_out`, `checked_out_time`, `created_by`, `guid`, `social_insurance_employee`, `social_insurance_support`, `medical_insurance_employee`, `medical_insurance_support`, `unemployment_insurance_employee`, `unemployment_insurance_support`, `union_employee`, `union_support`, `allowance_x`, `allowance_y`, `allowance_z`, `other_allowance`, `rent_old`, `rent_new`, `cost_water`, `electricity_1`, `electricity_2`, `electricity_3`, `electricity_4`, `electricity_5`, `electricity_6`, `allowance_36`, `base_pay`, `extra_income`, `time_update`) VALUES
+INSERT INTO `#__fm_config` (`id`, `asset_id`, `ordering`, `state`, `checked_out`, `checked_out_time`, `created_by`, `guid`, `social_insurance_employee`, `social_insurance_support`, `medical_insurance_employee`, `medical_insurance_support`, `unemployment_insurance_employee`, `unemployment_insurance_support`, `union_employee`, `union_support`, `allowance_x`, `allowance_y`, `allowance_z`, `other_allowance`, `rent_old`, `rent_new`, `cost_water`, `electricity_1`, `electricity_2`, `electricity_3`, `electricity_4`, `electricity_5`, `electricity_6`, `allowance_36`, `base_pay`, `extra_income`, `time_update`) VALUES
 (1, 487, 1, 1, 0, '0000-00-00 00:00:00', 266, 'D1870316-14F1-404E-9754-297870292DBE', 8, 18, 1.5, 3, 1, 1, 1, 1, 25, 45, 20, 12, 7500000, 9000000, 6000, 2000, 2000, 2000, 2000, 2000, 2000, 500000, 1150000, 50, '0000-00-00 00:00:00');
 
 

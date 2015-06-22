@@ -797,7 +797,7 @@ class FmModelEmployeepayrolls extends JModelList {
      * @param type $heso // mảng cá hệ số
      * @param type $pay_electricity // số điện
      * @param type $water_charges // số nước
-     * @param type $rent // tiền nhà
+     * @param type $rent // 
      * @param type $Huong_Luong // hệ số hưởng lương
      * @param type $LuongCoBan // Lương cơ bản
      * @param type $HSML // hệ số mức lương
