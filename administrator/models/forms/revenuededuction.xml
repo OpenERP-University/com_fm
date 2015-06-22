@@ -54,6 +54,17 @@
                                                     
                                                     
                                                     filter="safehtml" /> 
+       <field name="house_type"type="radio"
+               class="btn-group"
+            
+            label="COM_FM_FORM_LBL_REVENUEDEDUCTION_HOUSE_TYPE"
+            description="COM_FM_FORM_DESC_REVENUEDEDUCTION_HOUSE_TYPE" 
+        
+            option_on="Yes"
+            option_off="Yes">
+                <option value="1">Nhà cũ</option>
+                <option value="2">Nhà mới</option>
+        </field> 
 
        <field name="detain_type" type="list"
                 
