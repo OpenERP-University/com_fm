@@ -21,6 +21,8 @@ CREATE TABLE IF NOT EXISTS `#__fm_config` (
 `allowance_y` FLOAT NOT NULL  DEFAULT '0',
 `allowance_z` FLOAT NOT NULL DEFAULT '0' ,
 `other_allowance` FLOAT NOT NULL DEFAULT '0' ,
+`rent_old` FLOAT NOT NULL DEFAULT '0' ,
+`rent_new` FLOAT NOT NULL DEFAULT '0' ,
 `cost_water` FLOAT NOT NULL DEFAULT '0',
 `electricity_1` FLOAT NOT NULL DEFAULT '0',
 `electricity_2` FLOAT NOT NULL DEFAULT '0',
@@ -50,6 +52,7 @@ CREATE TABLE IF NOT EXISTS `#__fm_revenue_deduction` (
 `employee_guid` VARCHAR(255)  NOT NULL  ,
 `pay_electricity` FLOAT NOT NULL DEFAULT '0',
 `water_charges` FLOAT NOT NULL DEFAULT '0',
+`house_type` VARCHAR(255)  NOT NULL DEFAULT '1' ,
 `rent` FLOAT NOT NULL DEFAULT '0',
 `detain_type` VARCHAR(255)  NOT NULL DEFAULT '1' ,
 `detain` FLOAT NOT NULL DEFAULT '0',
@@ -162,8 +165,8 @@ WHERE NOT EXISTS (SELECT `type_alias` FROM `#__content_types` WHERE `type_alias`
 Insert config
 **/
 
-INSERT INTO `#__fm_config` (`id`, `asset_id`, `ordering`, `state`, `checked_out`, `checked_out_time`, `created_by`, `guid`, `social_insurance_employee`, `social_insurance_support`, `medical_insurance_employee`, `medical_insurance_support`, `unemployment_insurance_employee`, `unemployment_insurance_support`, `union_employee`, `union_support`, `allowance_x`, `allowance_y`, `allowance_z`, `other_allowance`, `cost_water`, `electricity_1`, `electricity_2`, `electricity_3`, `electricity_4`, `electricity_5`, `electricity_6`, `allowance_36`, `base_pay`, `extra_income`, `time_update`) VALUES
-(1, 462, 1, 1, 0, '0000-00-00 00:00:00', 266, 'D1870316-14F1-404E-9754-297870292DBE', 8, 18, 1.5, 3, 1, 1, 1, 1, 25, 45, 20, 12, 6000, 2000, 2000, 2000, 2000, 2000, 2000, 500000, 1150000, 50, '0000-00-00 00:00:00');
+INSERT INTO `y4x1k_fm_config` (`id`, `asset_id`, `ordering`, `state`, `checked_out`, `checked_out_time`, `created_by`, `guid`, `social_insurance_employee`, `social_insurance_support`, `medical_insurance_employee`, `medical_insurance_support`, `unemployment_insurance_employee`, `unemployment_insurance_support`, `union_employee`, `union_support`, `allowance_x`, `allowance_y`, `allowance_z`, `other_allowance`, `rent_old`, `rent_new`, `cost_water`, `electricity_1`, `electricity_2`, `electricity_3`, `electricity_4`, `electricity_5`, `electricity_6`, `allowance_36`, `base_pay`, `extra_income`, `time_update`) VALUES
+(1, 487, 1, 1, 0, '0000-00-00 00:00:00', 266, 'D1870316-14F1-404E-9754-297870292DBE', 8, 18, 1.5, 3, 1, 1, 1, 1, 25, 45, 20, 12, 7500000, 9000000, 6000, 2000, 2000, 2000, 2000, 2000, 2000, 500000, 1150000, 50, '0000-00-00 00:00:00');
 
 
 /**
