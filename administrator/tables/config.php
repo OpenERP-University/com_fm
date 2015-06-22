@@ -168,6 +168,142 @@ class FmTableconfig extends JTable {
         if (property_exists($this, 'ordering') && $this->id == 0) {
             $this->ordering = self::getNextOrder();
         }
+         if ($this->social_insurance_employee != 0) {
+            if (!(float) $this->social_insurance_employee) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+        if ($this->social_insurance_support != 0) {
+            if (!(float) $this->social_insurance_support) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+        if ($this->medical_insurance_employee != 0) {
+            if (!(float) $this->medical_insurance_employee) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+        if ($this->medical_insurance_support != 0) {
+            if (!(float) $this->medical_insurance_support) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+
+         if ($this->unemployment_insurance_employee != 0) {
+            if (!(float) $this->unemployment_insurance_employee) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+         if ($this->unemployment_insurance_support != 0) {
+            if (!(float) $this->unemployment_insurance_support) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+        if ($this->union_employee != 0) {
+            if (!(float) $this->union_employee) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+        if ($this->union_support != 0) {
+            if (!(float) $this->union_support) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+        if ($this->allowance_x != 0) {
+            if (!(float) $this->allowance_x) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+
+         if ($this->allowance_y != 0) {
+            if (!(float) $this->allowance_y) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+         if ($this->allowance_z != 0) {
+            if (!(float) $this->allowance_z) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+        if ($this->other_allowance != 0) {
+            if (!(float) $this->other_allowance) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+        if ($this->cost_water != 0) {
+            if (!(float) $this->cost_water) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+        if ($this->electricity_1 != 0) {
+            if (!(float) $this->electricity_1) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+
+         if ($this->electricity_2 != 0) {
+            if (!(float) $this->electricity_2) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+         if ($this->electricity_3 != 0) {
+            if (!(float) $this->electricity_3) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+        if ($this->electricity_4 != 0) {
+            if (!(float) $this->electricity_4) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+        if ($this->electricity_5 != 0) {
+            if (!(float) $this->electricity_5) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+        if ($this->electricity_6 != 0) {
+            if (!(float) $this->electricity_6) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+
+         if ($this->allowance_36 != 0) {
+            if (!(float) $this->allowance_36) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+         if ($this->base_pay != 0) {
+            if (!(float) $this->base_pay) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+        if ($this->extra_income != 0) {
+            if (!(float) $this->extra_income) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
 
         return parent::check();
     }

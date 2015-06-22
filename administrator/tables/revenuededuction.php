@@ -174,6 +174,30 @@ class FmTablerevenuededuction extends JTable {
         if (property_exists($this, 'ordering') && $this->id == 0) {
             $this->ordering = self::getNextOrder();
         }
+        if ( $this->pay_electricity !=0 ) {
+            if (!(float) $this->pay_electricity ) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+         if (  $this->water_charges!=0 ) {
+            if (!(float) $this->water_charges ) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+         if (  $this->rent !=0 ) {
+            if ( !(int) $this->rent ) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
+         if ( $this->detain !=0) {
+            if ( !(float) $this->detain) {
+                $this->setError(JText::_('COM_FM_ERROR'));
+                return FALSE;
+            }
+        }
 
         return parent::check();
     }
