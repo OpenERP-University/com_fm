@@ -20,7 +20,7 @@
                                                     filter="safehtml" /> 
 
        <field name="social_insurance_employee" type="text" size="40" class="inputbox"
-                                                    
+               required="true"                                       
             label="COM_FM_FORM_LBL_CONFIG_SOCIAL_INSURANCE_EMPLOYEE"
             description="COM_FM_FORM_DESC_CONFIG_SOCIAL_INSURANCE_EMPLOYEE" 
                                                     
@@ -29,7 +29,7 @@
                                                     filter="safehtml" /> 
 
        <field name="social_insurance_support" type="text" size="40" class="inputbox"
-                                                    
+               required="true"                                       
             label="COM_FM_FORM_LBL_CONFIG_SOCIAL_INSURANCE_SUPPORT"
             description="COM_FM_FORM_DESC_CONFIG_SOCIAL_INSURANCE_SUPPORT" 
                                                     
@@ -38,7 +38,7 @@
                                                     filter="safehtml" /> 
 
        <field name="medical_insurance_employee" type="text" size="40" class="inputbox"
-                                                    
+               required="true"                                       
             label="COM_FM_FORM_LBL_CONFIG_MEDICAL_INSURANCE_EMPLOYEE"
             description="COM_FM_FORM_DESC_CONFIG_MEDICAL_INSURANCE_EMPLOYEE" 
                                                     
@@ -47,7 +47,7 @@
                                                     filter="safehtml" /> 
 
        <field name="medical_insurance_support" type="text" size="40" class="inputbox"
-                                                    
+               required="true"                                       
             label="COM_FM_FORM_LBL_CONFIG_MEDICAL_INSURANCE_SUPPORT"
             description="COM_FM_FORM_DESC_CONFIG_MEDICAL_INSURANCE_SUPPORT" 
                                                     
@@ -56,7 +56,7 @@
                                                     filter="safehtml" /> 
 
        <field name="unemployment_insurance_employee" type="text" size="40" class="inputbox"
-                                                    
+               required="true"                                       
             label="COM_FM_FORM_LBL_CONFIG_UNEMPLOYMENT_INSURANCE_EMPLOYEE"
             description="COM_FM_FORM_DESC_CONFIG_UNEMPLOYMENT_INSURANCE_EMPLOYEE" 
                                                     
@@ -65,7 +65,7 @@
                                                     filter="safehtml" /> 
 
        <field name="unemployment_insurance_support" type="text" size="40" class="inputbox"
-                                                    
+               required="true"                                       
             label="COM_FM_FORM_LBL_CONFIG_UNEMPLOYMENT_INSURANCE_SUPPORT"
             description="COM_FM_FORM_DESC_CONFIG_UNEMPLOYMENT_INSURANCE_SUPPORT" 
                                                     
@@ -74,7 +74,7 @@
                                                     filter="safehtml" /> 
 
        <field name="union_employee" type="text" size="40" class="inputbox"
-                                                    
+               required="true"                                       
             label="COM_FM_FORM_LBL_CONFIG_UNION_EMPLOYEE"
             description="COM_FM_FORM_DESC_CONFIG_UNION_EMPLOYEE" 
                                                     
@@ -83,7 +83,7 @@
                                                     filter="safehtml" /> 
 
        <field name="union_support" type="text" size="40" class="inputbox"
-                                                    
+              required="true"                                        
             label="COM_FM_FORM_LBL_CONFIG_UNION_SUPPORT"
             description="COM_FM_FORM_DESC_CONFIG_UNION_SUPPORT" 
                                                     
@@ -92,7 +92,7 @@
                                                     filter="safehtml" /> 
 
        <field name="allowance_x" type="text" size="40" class="inputbox"
-                                                    
+               required="true"                                       
             label="COM_FM_FORM_LBL_CONFIG_ALLOWANCE_X"
             description="COM_FM_FORM_DESC_CONFIG_ALLOWANCE_X" 
                                                     
@@ -101,7 +101,7 @@
                                                     filter="safehtml" /> 
 
        <field name="allowance_y" type="text" size="40" class="inputbox"
-                                                    
+              required="true"                                        
             label="COM_FM_FORM_LBL_CONFIG_ALLOWANCE_Y"
             description="COM_FM_FORM_DESC_CONFIG_ALLOWANCE_Y" 
                                                     
@@ -110,7 +110,7 @@
                                                     filter="safehtml" /> 
 
        <field name="allowance_z" type="text" size="40" class="inputbox"
-                                                    
+               required="true"                                       
             label="COM_FM_FORM_LBL_CONFIG_ALLOWANCE_Z"
             description="COM_FM_FORM_DESC_CONFIG_ALLOWANCE_Z" 
                                                     
@@ -119,16 +119,32 @@
                                                     filter="safehtml" /> 
 
        <field name="other_allowance" type="text" size="40" class="inputbox"
-                                                    
+               required="true"                                       
             label="COM_FM_FORM_LBL_CONFIG_OTHER_ALLOWANCE"
             description="COM_FM_FORM_DESC_CONFIG_OTHER_ALLOWANCE" 
                                                     
                                                     
                                                     
                                                     filter="safehtml" /> 
+       <field name="rent_old" type="text" size="40" class="inputbox"
+             required="true"                                       
+            label="COM_FM_FORM_LBL_CONFIG_RENT_OLD"
+            description="COM_FM_FORM_DESC_CONFIG_RENT_OLD" 
+                                                    
+                                                    
+                                                    
+                                                    filter="safehtml" />
+       <field name="rent_new" type="text" size="40" class="inputbox"
+                 required="true"                                 
+            label="COM_FM_FORM_LBL_CONFIG_RENT_NEW"
+            description="COM_FM_FORM_DESC_CONFIG_RENT_NEW" 
+                                                    
+                                                    
+                                                    
+                                                    filter="safehtml" />
 
        <field name="cost_water" type="text" size="40" class="inputbox"
-                                                    
+                required="true"                                      
             label="COM_FM_FORM_LBL_CONFIG_COST_WATER"
             description="COM_FM_FORM_DESC_CONFIG_COST_WATER" 
                                                     
@@ -137,7 +153,7 @@
                                                     filter="safehtml" /> 
 
        <field name="electricity_1" type="text" size="40" class="inputbox"
-                                                    
+                required="true"                                      
             label="COM_FM_FORM_LBL_CONFIG_ELECTRICITY_1"
             description="COM_FM_FORM_DESC_CONFIG_ELECTRICITY_1" 
                                                     
@@ -146,7 +162,7 @@
                                                     filter="safehtml" /> 
 
        <field name="electricity_2" type="text" size="40" class="inputbox"
-                                                    
+                required="true"                                      
             label="COM_FM_FORM_LBL_CONFIG_ELECTRICITY_2"
             description="COM_FM_FORM_DESC_CONFIG_ELECTRICITY_2" 
                                                     
@@ -155,7 +171,7 @@
                                                     filter="safehtml" /> 
 
        <field name="electricity_3" type="text" size="40" class="inputbox"
-                                                    
+               required="true"                                       
             label="COM_FM_FORM_LBL_CONFIG_ELECTRICITY_3"
             description="COM_FM_FORM_DESC_CONFIG_ELECTRICITY_3" 
                                                     
@@ -164,7 +180,7 @@
                                                     filter="safehtml" /> 
 
        <field name="electricity_4" type="text" size="40" class="inputbox"
-                                                    
+               required="true"                                       
             label="COM_FM_FORM_LBL_CONFIG_ELECTRICITY_4"
             description="COM_FM_FORM_DESC_CONFIG_ELECTRICITY_4" 
                                                     
@@ -173,7 +189,7 @@
                                                     filter="safehtml" /> 
 
        <field name="electricity_5" type="text" size="40" class="inputbox"
-                                                    
+               required="true"                                      
             label="COM_FM_FORM_LBL_CONFIG_ELECTRICITY_5"
             description="COM_FM_FORM_DESC_CONFIG_ELECTRICITY_5" 
                                                     
@@ -182,7 +198,7 @@
                                                     filter="safehtml" /> 
 
        <field name="electricity_6" type="text" size="40" class="inputbox"
-                                                    
+               required="true"                                       
             label="COM_FM_FORM_LBL_CONFIG_ELECTRICITY_6"
             description="COM_FM_FORM_DESC_CONFIG_ELECTRICITY_6" 
                                                     
@@ -191,7 +207,7 @@
                                                     filter="safehtml" /> 
 
        <field name="allowance_36" type="text" size="40" class="inputbox"
-                                                    
+                required="true"                                      
             label="COM_FM_FORM_LBL_CONFIG_ALLOWANCE_36"
             description="COM_FM_FORM_DESC_CONFIG_ALLOWANCE_36" 
                                                     
@@ -200,7 +216,7 @@
                                                     filter="safehtml" /> 
 
        <field name="base_pay" type="text" size="40" class="inputbox"
-                                                    
+               required="true"                                       
             label="COM_FM_FORM_LBL_CONFIG_BASE_PAY"
             description="COM_FM_FORM_DESC_CONFIG_BASE_PAY" 
                                                     
@@ -209,7 +225,7 @@
                                                     filter="safehtml" /> 
 
        <field name="extra_income" type="text" size="40" class="inputbox"
-                                                    
+                required="true"                                      
             label="COM_FM_FORM_LBL_CONFIG_EXTRA_INCOME"
             description="COM_FM_FORM_DESC_CONFIG_EXTRA_INCOME" 
                                                     
