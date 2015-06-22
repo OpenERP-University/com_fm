@@ -405,6 +405,7 @@ class FmModelEmployeepayrolls extends JModelList {
                 //Cac khoan giam tru
                 $TienDien[$i] = $CacKhoan_GT[$i]['TienDien'];
                 $TienNuoc[$i] = $CacKhoan_GT[$i]['TienNuoc'];
+                $TienNha[$i]=$CacKhoan_GT[$i]['TienNha'];
                 $TinhBHXH[$i] = $CacKhoan_GT[$i]['BHXH'];
                 $TinhBHYT[$i] = $CacKhoan_GT[$i]['BHYT'];
                 $TinhBHTN[$i] = $CacKhoan_GT[$i]['BHTN'];
@@ -815,15 +816,16 @@ class FmModelEmployeepayrolls extends JModelList {
             $TienNuoc = $water_charges * (float) $heso->cost_water;
             if($house_type ==1)
             {
-                $TienNha = $rent*$heso->rent_old;
+                $TienNha = $rent*(float)$heso->rent_old;
             }
             else
             {
-                 $TienNha = $rent*$heso->rent_new;
+                 $TienNha = $rent*(float)$heso->rent_new;
             }
         } else {
             $TienDien = 0;
             $TienNuoc = 0;
+            $TienNha=0;
         }
 
         $HS_BHXH = (float) $heso->social_insurance_employee;
