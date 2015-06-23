@@ -152,7 +152,6 @@ class FmController extends JControllerLegacy {
         if ($option == 1) {
             $model_date_config = $this->getModel('date_config');
             $model_date_config->changeCheckoutTime('checkout_time_payroll');
-            $model_date_config->changeCheckoutTime('checkout_time_salary');
         }
     }
 
