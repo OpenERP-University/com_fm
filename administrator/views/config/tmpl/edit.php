@@ -121,18 +121,26 @@ $document->addStyleSheet('components/com_fm/assets/css/fm.css');
 
         function checkvalue(data)
         {
+            var dem = 0;
             for (var i = 0; i < data.length; i++) {
                 if (!parseInt(data[i])) {
-                    if (data[i] !== '0') {
-                        data = data.substring(0, i);
+                     if (data[i] !== '0') {
+                        if (dem == 1) {
+                            if (data[i] === '.') {
+                                data = data.substring(0, i);
+                            }
+                        }
+                        if (data[i] !== '.') {
+                            data = data.substring(0, i);
+                        } else {
+                            dem = 1;
+                        }
                     }
                 }
 
             }
             return data;
         }
-
-        
 
     });
 

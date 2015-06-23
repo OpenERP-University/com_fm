@@ -215,12 +215,18 @@ class FmTablee_allowance extends JTable {
         $data = (string) $data;
         $lengthstr = strlen($data);
         $array = str_split($data);
-
+        $dem = 0;
         for ($i = 0; $i < $lengthstr; $i++) {
             if (!(is_numeric($array[$i]))) {
-                $this->setError(JText::_('COM_FM_ERROR'));
-                return FALSE;
+                if ($array[$i] != '.') {
+                    if ($array[$i] != '0') {
+                        $dem ++;
+                    }
+                }
             }
+        }
+        if ($dem != 0) {
+            return FALSE;
         }
         return TRUE;
     }
